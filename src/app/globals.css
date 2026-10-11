@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fcfcfb;
+  --surface: #ffffff;
+  --surface-raised: #f7f7f5;
+  --text: #1a1a19;
+  --text-muted: #6b6b66;
+  --border: #e6e6e2;
+  --border-strong: #cacac5;
+  --accent: #005f60;
+  --accent-hover: #004d4e;
+  --accent-subtle: #e6f0f0;
+  --accent-text: #ffffff;
+  --error: #b91c1c;
+  --error-subtle: #fef2f2;
+  --warning: #b45309;
+  --warning-subtle: #fffbeb;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

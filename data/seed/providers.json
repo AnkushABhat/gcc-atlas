@@ -1,0 +1,90 @@
+[
+  {
+    "slug": "ansr-global",
+    "name": "ANSR",
+    "category": "setup_advisor",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://ansr.com",
+    "description": "Advises and operates Global Capability Centers in India with end-to-end workspace and talent design.",
+    "sourceName": "ANSR Corporate Overview",
+    "sourceUrl": "https://ansr.com",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "zinnov-advisory",
+    "name": "Zinnov",
+    "category": "setup_advisor",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://zinnov.com",
+    "description": "Management consulting firm advising global enterprises on GCC maturity, digital engineering, and talent strategy.",
+    "sourceName": "Zinnov Management Consulting",
+    "sourceUrl": "https://zinnov.com",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "jll-india",
+    "name": "JLL India",
+    "category": "real_estate",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://www.jll.co.in",
+    "description": "Professional services firm specializing in commercial real estate leasing, transaction advisory, and occupier strategy.",
+    "sourceName": "JLL India Commercial Advisory",
+    "sourceUrl": "https://www.jll.co.in",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "cbre-india",
+    "name": "CBRE India",
+    "category": "real_estate",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://www.cbre.co.in",
+    "description": "Commercial real estate advisory firm providing office leasing, project management, and valuation services across India.",
+    "sourceName": "CBRE India Real Estate",
+    "sourceUrl": "https://www.cbre.co.in",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "deel-india",
+    "name": "Deel",
+    "category": "eor",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://www.deel.com",
+    "description": "Global compliance and payroll platform facilitating compliant talent hiring and employer of record operations in India.",
+    "sourceName": "Deel India Country Guide",
+    "sourceUrl": "https://www.deel.com",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "remote-india",
+    "name": "Remote",
+    "category": "eor",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://remote.com",
+    "description": "Global HR infrastructure providing employer of record services, statutory benefits administration, and payroll in India.",
+    "sourceName": "Remote India Entity Operations",
+    "sourceUrl": "https://remote.com",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "cyril-amarchand-mangaldas",
+    "name": "Cyril Amarchand Mangaldas",
+    "category": "legal",
+    "citiesServed": ["bengaluru", "hyderabad", "pune", "gurugram", "chennai", "mumbai"],
+    "website": "https://www.cyrilshroff.com",
+    "description": "Full-service Indian corporate law firm advising multinational companies on corporate establishment, FDI regulatory approvals, and employment compliance.",
+    "sourceName": "Cyril Amarchand Mangaldas Firm Profile",
+    "sourceUrl": "https://www.cyrilshroff.com",
+    "asOf": "2024-01-01"
+  },
+  {
+    "slug": "trilegal",
+    "name": "Trilegal",
+    "category": "legal",
+    "citiesServed": ["bengaluru", "hyderabad", "gurugram", "mumbai"],
+    "website": "https://trilegal.com",
+    "description": "Corporate law firm providing counsel on foreign corporate structuring, commercial real estate lease negotiation, and technology regulations.",
+    "sourceName": "Trilegal Practices Overview",
+    "sourceUrl": "https://trilegal.com",
+    "asOf": "2024-01-01"
+  }
+]

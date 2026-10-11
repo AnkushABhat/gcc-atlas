@@ -1,0 +1,9 @@
+[
+  { "slug": "bengaluru", "name": "Bengaluru", "stateSlug": "karnataka" },
+  { "slug": "hyderabad", "name": "Hyderabad", "stateSlug": "telangana" },
+  { "slug": "pune", "name": "Pune", "stateSlug": "maharashtra" },
+  { "slug": "gurugram", "name": "Gurugram", "stateSlug": "haryana" },
+  { "slug": "chennai", "name": "Chennai", "stateSlug": "tamil-nadu" },
+  { "slug": "mumbai", "name": "Mumbai", "stateSlug": "maharashtra" },
+  { "slug": "coimbatore", "name": "Coimbatore", "stateSlug": "tamil-nadu" }
+]
