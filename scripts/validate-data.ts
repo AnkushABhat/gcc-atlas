@@ -50,6 +50,7 @@ export const factSchema = z
     asOf: asOfDate,
     confidence: z.enum(["reported", "derived", "estimate"]),
     note: z.string().optional(),
+    pinpoint: z.string().optional(),
   })
   .refine((data) => data.valueMin <= data.valueMax, {
     message: "valueMin must be less than or equal to valueMax",
@@ -76,6 +77,7 @@ export const incentiveSchema = z.object({
   sourceName: z.string().min(1),
   sourceUrl: httpsUrl,
   asOf: asOfDate,
+  pinpoint: z.string().optional(),
 });
 
 export const gccSchema = z.object({

@@ -28,9 +28,17 @@
   --radius-md: 10px;
 }
 
+html {
+  font-size: 16.5px;
+}
+
 body {
   color: var(--text);
   background-color: var(--background);
+  background-image: 
+    radial-gradient(ellipse 90% 40% at 50% -5%, rgba(0, 95, 96, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 30% at 95% 10%, rgba(202, 202, 197, 0.15) 0%, transparent 60%);
+  background-attachment: fixed;
   font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,4 +50,24 @@ code, kbd, samp, pre {
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+.gradient-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fafaf8 100%);
+}
+
+.gradient-card-subtle {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f7f5 100%);
+}
+
+.gradient-primary-btn {
+  background: linear-gradient(135deg, #005f60 0%, #004d4e 100%);
+}
+
+.gradient-primary-btn:hover {
+  background: linear-gradient(135deg, #006e6f 0%, #005556 100%);
+}
+
+.gradient-header {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfa 100%);
 }

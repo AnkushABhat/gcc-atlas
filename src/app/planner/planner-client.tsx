@@ -166,7 +166,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       {/* Parameters Sidebar */}
-      <aside className="lg:col-span-4 bg-surface border border-border rounded-md p-5 space-y-6">
+      <aside className="lg:col-span-4 gradient-card border border-border rounded-md p-5 space-y-6 shadow-xs">
         <div>
           <h2 className="text-sm font-medium tracking-tight text-text flex items-center gap-2">
             <Sliders className="w-4 h-4 text-accent" />
@@ -387,12 +387,12 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
             {rankingResult.ranked.map((city, idx) => (
               <div
                 key={city.cityId}
-                className="bg-surface border border-border rounded-md p-5 space-y-4 hover:border-border-strong transition-colors duration-150"
+                className="gradient-card border border-border rounded-md p-5 space-y-4 hover:border-border-strong hover:shadow-xs transition-all duration-150"
               >
                 {/* Header row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-3">
-                    <span className="w-7 h-7 rounded-full bg-surface-raised border border-border flex items-center justify-center text-xs font-mono font-medium text-text">
+                    <span className="w-7 h-7 rounded-full bg-gradient-to-br from-teal-primary to-teal-hover text-white flex items-center justify-center text-xs font-mono font-medium shadow-xs">
                       #{idx + 1}
                     </span>
                     <div>
@@ -401,7 +401,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                           {city.cityName}
                         </h3>
                         {idx === 0 && (
-                          <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-accent-subtle text-accent border border-border inline-flex items-center gap-1">
+                          <span className="px-2 py-0.5 rounded text-xs font-medium bg-accent-subtle text-accent border border-border inline-flex items-center gap-1">
                             <Sparkles className="w-3 h-3 text-accent" />
                             <span>Top Match</span>
                           </span>
@@ -448,8 +448,8 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
 
                   {/* Operating GCCs */}
                   <div>
-                    <span className="text-xs text-text-muted block">Operating GCCs</span>
-                    <span className="text-sm font-medium font-mono text-text tabular-nums">
+                    <span className="text-xs text-text-muted block font-medium">Operating GCCs</span>
+                    <span className="text-[15px] font-medium font-mono text-text tabular-nums">
                       {city.operatingGccCount}{" "}
                       <span className="text-xs font-sans text-text-muted font-normal">
                         in our data
@@ -466,7 +466,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                       <span className="font-medium text-text block">
                         Estimated Monthly Office Rent
                       </span>
-                      <span className="text-[11px] text-text-muted">
+                      <span className="text-xs text-text-muted">
                         For {headcount} seats @ {sqftPerSeat} sq ft / seat
                       </span>
                     </div>
@@ -501,31 +501,39 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                     </button>
 
                     {expandedIncentives[city.cityId] && (
-                      <div className="mt-2 space-y-2 pt-2 border-t border-border">
+                      <div className="mt-2 space-y-2.5 pt-2 border-t border-border">
                         {city.incentives.map((inc) => (
                           <div
                             key={inc.id}
-                            className="p-2.5 bg-surface-raised rounded-sm border border-border text-xs space-y-1"
+                            className="p-3 bg-surface-raised/90 rounded-sm border border-border text-xs space-y-2"
                           >
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="font-medium text-text">{inc.name}</span>
-                              <span className="text-[10px] px-1.5 py-0.5 rounded border border-border bg-surface text-text-muted font-mono capitalize">
+                            <div className="flex items-start justify-between gap-2">
+                              <span className="font-medium text-text text-xs sm:text-[13px]">{inc.name}</span>
+                              <span className="text-xs px-2 py-0.5 rounded border border-border bg-surface text-text-muted font-mono capitalize shrink-0">
                                 {inc.type.replace("_", " ")}
                               </span>
                             </div>
-                            <p className="text-[11px] text-text leading-relaxed">
+                            <p className="text-xs text-text leading-relaxed">
                               {inc.summary}
                             </p>
-                            <div className="flex items-center justify-between text-[10px] text-text-muted pt-1">
+                            {inc.pinpoint && (
+                              <div className="p-2 rounded bg-surface border border-border/80 flex items-center gap-1.5 text-xs text-teal-primary font-medium">
+                                <FileText className="w-3.5 h-3.5 shrink-0" />
+                                <span>Pinpointed Clause: <strong className="font-semibold text-text">{inc.pinpoint}</strong></span>
+                              </div>
+                            )}
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-text-muted pt-1.5 gap-1.5 border-t border-border/60">
                               <span>Source: {inc.sourceName}</span>
                               <a
                                 href={inc.sourceUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-accent hover:underline flex items-center gap-0.5"
+                                className="text-accent hover:underline inline-flex items-center gap-1 font-medium bg-surface px-2.5 py-1 rounded border border-border/80 hover:border-accent shadow-xs"
+                                title="Opens official government policy PDF directly at source"
                               >
-                                <span>Policy Doc</span>
-                                <ExternalLink className="w-2.5 h-2.5" />
+                                <FileText className="w-3.5 h-3.5 text-accent shrink-0" />
+                                <span>Official Policy Doc / PDF</span>
+                                <ExternalLink className="w-3 h-3 ml-0.5" />
                               </a>
                             </div>
                           </div>
@@ -542,7 +550,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
 
                 {/* City Intro Action Footer */}
                 <div className="pt-3 border-t border-border flex items-center justify-between text-xs">
-                  <span className="text-[11px] text-text-muted">
+                  <span className="text-xs text-text-muted">
                     {city.factors.filter((f) => f.weight > 0).length} of 4 factors weighted
                   </span>
                   <a
@@ -576,7 +584,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               {rankingResult.unranked.map((city) => (
                 <div
                   key={city.cityId}
-                  className="bg-surface border border-border border-dashed rounded-md p-4 space-y-3"
+                  className="gradient-card border border-border border-dashed rounded-md p-4 space-y-3 shadow-xs"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>

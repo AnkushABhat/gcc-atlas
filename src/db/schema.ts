@@ -41,6 +41,7 @@ export const facts = sqliteTable(
     as_of: text("as_of").notNull(), // ISO YYYY-MM-DD or YYYY-MM
     confidence: text("confidence").notNull(), // 'reported' | 'derived' | 'estimate'
     note: text("note"),
+    pinpoint: text("pinpoint"),
   },
   (table) => [
     index("idx_facts_city_metric").on(table.city_slug, table.metric),
@@ -66,6 +67,7 @@ export const incentives = sqliteTable("incentives", {
   source_name: text("source_name").notNull(),
   source_url: text("source_url").notNull(),
   as_of: text("as_of").notNull(),
+  pinpoint: text("pinpoint"),
 });
 
 /**

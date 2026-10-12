@@ -68,7 +68,7 @@ export default async function ProviderDetailPage({
       </div>
 
       {/* Profile Card */}
-      <div className="rounded-lg border border-border bg-surface p-6 sm:p-8 space-y-6">
+      <div className="rounded-lg border border-border gradient-card p-6 sm:p-8 space-y-6 shadow-xs">
         {/* Header with Title, Category, and Claim state */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 pb-6 border-b border-border">
           <div className="flex items-start gap-4">

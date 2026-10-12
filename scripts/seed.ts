@@ -104,6 +104,7 @@ async function runSeed() {
           source_name: f.sourceName,
           confidence: f.confidence,
           note: f.note ?? null,
+          pinpoint: f.pinpoint ?? null,
         })
         .where(eq(schema.facts.id, existing[0].id));
     } else {
@@ -118,6 +119,7 @@ async function runSeed() {
         as_of: f.asOf,
         confidence: f.confidence,
         note: f.note ?? null,
+        pinpoint: f.pinpoint ?? null,
       });
     }
   }
@@ -148,6 +150,7 @@ async function runSeed() {
           source_name: inc.sourceName,
           source_url: inc.sourceUrl,
           as_of: inc.asOf,
+          pinpoint: inc.pinpoint ?? null,
         })
         .where(eq(schema.incentives.id, existing[0].id));
     } else {
@@ -164,6 +167,7 @@ async function runSeed() {
         source_name: inc.sourceName,
         source_url: inc.sourceUrl,
         as_of: inc.asOf,
+        pinpoint: inc.pinpoint ?? null,
       });
     }
   }

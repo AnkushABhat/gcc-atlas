@@ -110,13 +110,13 @@ export function DataTable<T>({
 
   return (
     <div
-      className={`rounded-lg border border-border bg-surface overflow-x-auto ${className}`}
+      className={`rounded-lg border border-border gradient-card overflow-x-auto shadow-xs ${className}`}
       role="region"
       aria-label={ariaLabel}
     >
-      <table className="w-full text-xs text-left border-collapse">
+      <table className="w-full text-xs sm:text-[13px] text-left border-collapse">
         <thead
-          className={`bg-background text-text-muted border-b border-border ${
+          className={`bg-gradient-to-b from-surface-raised to-surface text-text-muted border-b border-border ${
             stickyHeader ? "sticky top-0 z-10" : ""
           }`}
         >

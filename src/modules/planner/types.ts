@@ -15,6 +15,7 @@ export interface FactRef {
   asOf: string;
   confidence: string;
   note?: string | null;
+  pinpoint?: string | null;
 }
 
 export interface IncentiveRef {
@@ -25,6 +26,7 @@ export interface IncentiveRef {
   sourceName: string;
   sourceUrl: string;
   asOf: string;
+  pinpoint?: string | null;
   minHeadcount?: number | null;
   maxHeadcount?: number | null;
   functions?: string[] | null;

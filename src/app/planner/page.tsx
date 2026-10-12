@@ -32,6 +32,7 @@ export default async function PlannerPage() {
           asOf: rentRaw.asOf,
           confidence: rentRaw.confidence,
           note: rentRaw.note,
+          pinpoint: rentRaw.pinpoint,
         }
       : null;
 
@@ -46,6 +47,7 @@ export default async function PlannerPage() {
           asOf: talentRaw.asOf,
           confidence: talentRaw.confidence,
           note: talentRaw.note,
+          pinpoint: talentRaw.pinpoint,
         }
       : null;
 
@@ -71,6 +73,7 @@ export default async function PlannerPage() {
           sourceName: inc.sourceName,
           sourceUrl: inc.sourceUrl,
           asOf: inc.asOf,
+          pinpoint: inc.pinpoint ?? null,
           minHeadcount: inc.minHeadcount ?? null,
           maxHeadcount: inc.maxHeadcount ?? null,
           functions: parsedFunctions,

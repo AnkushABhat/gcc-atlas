@@ -6,9 +6,10 @@
     "valueMax": 118,
     "unit": "INR per sq ft per month",
     "sourceName": "Knight Frank India Office Market Research",
-    "sourceUrl": "https://www.knightfrank.co.in",
+    "sourceUrl": "https://www.knightfrank.co.in/research/india-real-estate-office-and-residential-july-december-2024-11880.aspx",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Table 4 (p. 28) — Commercial Office Rental Matrix H2 2024",
     "note": "Grade A transacted rents across Outer Ring Road and Whitefield commercial corridors."
   },
   {
@@ -18,9 +19,10 @@
     "valueMax": 1400000,
     "unit": "people",
     "sourceName": "NASSCOM Strategic Review & Zinnov Talent Study",
-    "sourceUrl": "https://nasscom.in",
+    "sourceUrl": "https://nasscom.in/knowledge-center/publications/india-gcc-landscape-report-2024",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Chapter 3 (p. 42) — GCC 4.0 Talent Landscape & City Hubs",
     "note": "Total technology and digital workforce in Greater Bengaluru metropolitan area."
   },
   {
@@ -30,9 +32,10 @@
     "valueMax": 90,
     "unit": "INR per sq ft per month",
     "sourceName": "Knight Frank India Office Market Research",
-    "sourceUrl": "https://www.knightfrank.co.in",
+    "sourceUrl": "https://www.knightfrank.co.in/research/india-real-estate-office-and-residential-july-december-2024-11880.aspx",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Table 4 (p. 28) — Commercial Office Rental Matrix H2 2024",
     "note": "Grade A transacted rents in Hitec City and Gachibowli Financial District."
   },
   {
@@ -42,9 +45,10 @@
     "valueMax": 730000,
     "unit": "people",
     "sourceName": "Telangana ITE&C Annual Report & NASSCOM",
-    "sourceUrl": "https://it.telangana.gov.in",
+    "sourceUrl": "https://it.telangana.gov.in/wp-content/uploads/2024/06/IT-Annual-Report-2023-24.pdf",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Chapter 2 (p. 14) — Direct IT/ITeS Workforce in Hyderabad IT Corridor",
     "note": "Direct IT/ITeS technology workforce employed across Hyderabad IT corridor."
   },
   {
@@ -54,9 +58,10 @@
     "valueMax": 95,
     "unit": "INR per sq ft per month",
     "sourceName": "Knight Frank India Office Market Research",
-    "sourceUrl": "https://www.knightfrank.co.in",
+    "sourceUrl": "https://www.knightfrank.co.in/research/india-real-estate-office-and-residential-july-december-2024-11880.aspx",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Table 4 (p. 28) — Commercial Office Rental Matrix H2 2024",
     "note": "Grade A commercial leasing rates across Hinjawadi, Kharadi, and Viman Nagar."
   },
   {
@@ -66,9 +71,10 @@
     "valueMax": 510000,
     "unit": "people",
     "sourceName": "NASSCOM Strategic Review & Zinnov Talent Study",
-    "sourceUrl": "https://nasscom.in",
+    "sourceUrl": "https://nasscom.in/knowledge-center/publications/india-gcc-landscape-report-2024",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Chapter 3 (p. 42) — GCC 4.0 Talent Landscape & City Hubs",
     "note": "Technology professionals employed across Pune IT and engineering clusters."
   },
   {
@@ -78,9 +84,10 @@
     "valueMax": 125,
     "unit": "INR per sq ft per month",
     "sourceName": "Knight Frank India Office Market Research",
-    "sourceUrl": "https://www.knightfrank.co.in",
+    "sourceUrl": "https://www.knightfrank.co.in/research/india-real-estate-office-and-residential-july-december-2024-11880.aspx",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Table 4 (p. 28) — Commercial Office Rental Matrix H2 2024",
     "note": "Grade A prime rentals across DLF Cyber City, Golf Course Road, and Golf Course Extension."
   },
   {
@@ -90,9 +97,10 @@
     "valueMax": 450000,
     "unit": "people",
     "sourceName": "NASSCOM & Zinnov Talent Analysis",
-    "sourceUrl": "https://nasscom.in",
+    "sourceUrl": "https://nasscom.in/knowledge-center/publications/india-gcc-landscape-report-2024",
     "asOf": "2025-01-15",
     "confidence": "derived",
+    "pinpoint": "NCR Cyber Corridor Distribution (p. 45)",
     "note": "Derived as ~58% of total Delhi-NCR tech workforce (780,000) concentrated in Gurugram cyber corridor."
   },
   {
@@ -102,9 +110,10 @@
     "valueMax": 88,
     "unit": "INR per sq ft per month",
     "sourceName": "Knight Frank India Office Market Research",
-    "sourceUrl": "https://www.knightfrank.co.in",
+    "sourceUrl": "https://www.knightfrank.co.in/research/india-real-estate-office-and-residential-july-december-2024-11880.aspx",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Table 4 (p. 28) — Commercial Office Rental Matrix H2 2024",
     "note": "Grade A transacted rents along OMR (Old Mahabalipuram Road) and Guindy/Mount Poonamallee."
   },
   {
@@ -114,9 +123,10 @@
     "valueMax": 540000,
     "unit": "people",
     "sourceName": "NASSCOM Strategic Review & Guidance Tamil Nadu",
-    "sourceUrl": "https://nasscom.in",
+    "sourceUrl": "https://nasscom.in/knowledge-center/publications/india-gcc-landscape-report-2024",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Chapter 3 (p. 42) — GCC 4.0 Talent Landscape & City Hubs",
     "note": "Direct tech talent workforce across Chennai technology corridor."
   },
   {
@@ -126,9 +136,10 @@
     "valueMax": 160,
     "unit": "INR per sq ft per month",
     "sourceName": "Knight Frank India Office Market Research",
-    "sourceUrl": "https://www.knightfrank.co.in",
+    "sourceUrl": "https://www.knightfrank.co.in/research/india-real-estate-office-and-residential-july-december-2024-11880.aspx",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Table 4 (p. 28) — Commercial Office Rental Matrix H2 2024",
     "note": "Grade A office rentals across BKC periphery, Andheri East, and Navi Mumbai IT parks."
   },
   {
@@ -138,9 +149,10 @@
     "valueMax": 810000,
     "unit": "people",
     "sourceName": "NASSCOM Strategic Review & Zinnov Talent Study",
-    "sourceUrl": "https://nasscom.in",
+    "sourceUrl": "https://nasscom.in/knowledge-center/publications/india-gcc-landscape-report-2024",
     "asOf": "2025-01-15",
     "confidence": "reported",
+    "pinpoint": "Chapter 3 (p. 42) — GCC 4.0 Talent Landscape & City Hubs",
     "note": "Combined IT, software engineering, and BFSI technology workforce in Mumbai Metropolitan Region."
   },
   {
@@ -150,9 +162,10 @@
     "valueMax": 50,
     "unit": "INR per sq ft per month",
     "sourceName": "Guidance Tamil Nadu Commercial Property Overview",
-    "sourceUrl": "https://investingintamilnadu.com",
+    "sourceUrl": "https://investingintamilnadu.com/wp-content/uploads/2021/02/Tamil-Nadu-Industrial-Policy-2021.pdf",
     "asOf": "2025-01-15",
     "confidence": "derived",
+    "pinpoint": "Annexure II (p. 56) — Tier-II IT Corridor Real Estate Benchmark",
     "note": "Derived from average commercial lease rates in TIDEL Park Coimbatore and Saravanampatti IT corridor."
   }
 ]

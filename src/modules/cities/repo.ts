@@ -21,6 +21,7 @@ export interface Fact {
   asOf: string;
   confidence: "reported" | "derived" | "estimate";
   note: string | null;
+  pinpoint?: string | null;
 }
 
 export interface Incentive {
@@ -37,6 +38,7 @@ export interface Incentive {
   sourceName: string;
   sourceUrl: string;
   asOf: string;
+  pinpoint?: string | null;
 }
 
 export interface ListIncentivesOptions {
@@ -105,6 +107,7 @@ export async function getFacts(citySlug: string, metrics?: string[]): Promise<Fa
         asOf: row.as_of,
         confidence: row.confidence as "reported" | "derived" | "estimate",
         note: row.note,
+        pinpoint: row.pinpoint,
       });
     }
   }
@@ -140,6 +143,7 @@ export async function getAllLatestFacts(metrics?: string[]): Promise<Record<stri
         asOf: row.as_of,
         confidence: row.confidence as "reported" | "derived" | "estimate",
         note: row.note,
+        pinpoint: row.pinpoint,
       };
     }
   }
@@ -165,6 +169,7 @@ export async function listIncentives(options?: ListIncentivesOptions): Promise<I
       sourceName: r.source_name,
       sourceUrl: r.source_url,
       asOf: r.as_of,
+      pinpoint: r.pinpoint,
     }))
     .filter((inc) => {
       if (options?.stateSlug && inc.stateSlug !== options.stateSlug) {

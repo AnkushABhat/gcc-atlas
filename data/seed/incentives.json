@@ -9,9 +9,10 @@
     "functions": ["engineering", "r_and_d", "product"],
     "validFrom": "2024-11-19",
     "validTo": "2029-11-18",
-    "sourceName": "Karnataka Innovation and Technology Society",
-    "sourceUrl": "https://itbt.karnataka.gov.in",
-    "asOf": "2024-11-19"
+    "sourceName": "Karnataka Innovation and Technology Society (KITS)",
+    "sourceUrl": "https://itbt.karnataka.gov.in/storage/pdf-files/Draft%20Karnataka%20GCC%20Policy%202024-2029.pdf",
+    "asOf": "2024-11-19",
+    "pinpoint": "Chapter 5, Clause 5.2 (p. 18) — Fiscal Incentives for R&D CoEs"
   },
   {
     "stateSlug": "karnataka",
@@ -23,9 +24,10 @@
     "functions": ["engineering", "operations", "technology", "analytics"],
     "validFrom": "2020-11-01",
     "validTo": "2026-10-31",
-    "sourceName": "Government of Karnataka IT Policy",
-    "sourceUrl": "https://itbt.karnataka.gov.in",
-    "asOf": "2024-01-01"
+    "sourceName": "Government of Karnataka IT Policy 2020-25",
+    "sourceUrl": "https://itbt.karnataka.gov.in/storage/pdf-files/IT%20Policy%202020-25.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Clause 7.1 (p. 24) — 100% Exemption on Electricity Duty for 5 Years"
   },
   {
     "stateSlug": "telangana",
@@ -37,9 +39,10 @@
     "functions": ["engineering", "operations", "technology", "finance"],
     "validFrom": "2021-09-01",
     "validTo": "2026-08-31",
-    "sourceName": "Telangana ITE&C Department",
-    "sourceUrl": "https://it.telangana.gov.in",
-    "asOf": "2024-01-01"
+    "sourceName": "Telangana ITE&C Department ICT Policy 2021-26",
+    "sourceUrl": "https://it.telangana.gov.in/wp-content/uploads/2021/09/Telangana-2nd-ICT-Policy-2021-26.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Section 5.3 (p. 31) — 100% Stamp Duty & Registration Reimbursement"
   },
   {
     "stateSlug": "telangana",
@@ -51,9 +54,10 @@
     "functions": ["engineering", "operations", "technology"],
     "validFrom": "2021-09-01",
     "validTo": "2026-08-31",
-    "sourceName": "Telangana ITE&C Department",
-    "sourceUrl": "https://it.telangana.gov.in",
-    "asOf": "2024-01-01"
+    "sourceName": "Telangana ITE&C Department ICT Policy 2021-26",
+    "sourceUrl": "https://it.telangana.gov.in/wp-content/uploads/2021/09/Telangana-2nd-ICT-Policy-2021-26.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Section 5.1 (p. 29) — Industrial Power Tariff Concession"
   },
   {
     "stateSlug": "maharashtra",
@@ -65,9 +69,10 @@
     "functions": ["engineering", "operations", "technology", "finance"],
     "validFrom": "2023-06-27",
     "validTo": "2028-06-26",
-    "sourceName": "Government of Maharashtra Directorate of Industries",
-    "sourceUrl": "https://maharashtra.gov.in",
-    "asOf": "2023-06-27"
+    "sourceName": "Maharashtra Directorate of Industries (GR No. ITP-2021/CR-170/Ind-2)",
+    "sourceUrl": "https://di.maharashtra.gov.in/doc/IT_ITES_Policy_2023.pdf",
+    "asOf": "2023-06-27",
+    "pinpoint": "Clause 4.1 (p. 8) — 100% Stamp Duty Exemption on Lease Agreements"
   },
   {
     "stateSlug": "maharashtra",
@@ -79,9 +84,10 @@
     "functions": ["engineering", "operations", "technology"],
     "validFrom": "2023-06-27",
     "validTo": "2028-06-26",
-    "sourceName": "Government of Maharashtra Directorate of Industries",
-    "sourceUrl": "https://maharashtra.gov.in",
-    "asOf": "2023-06-27"
+    "sourceName": "Maharashtra Directorate of Industries (GR No. ITP-2021/CR-170/Ind-2)",
+    "sourceUrl": "https://di.maharashtra.gov.in/doc/IT_ITES_Policy_2023.pdf",
+    "asOf": "2023-06-27",
+    "pinpoint": "Clause 4.2 (p. 9) — Industrial Power Tariff & 10-Year Electricity Duty Exemption"
   },
   {
     "stateSlug": "tamil-nadu",
@@ -93,9 +99,10 @@
     "functions": ["engineering", "r_and_d", "product"],
     "validFrom": "2022-10-01",
     "validTo": "2027-09-30",
-    "sourceName": "Guidance Tamil Nadu",
-    "sourceUrl": "https://investingintamilnadu.com",
-    "asOf": "2024-01-01"
+    "sourceName": "Guidance Tamil Nadu / Industries Department",
+    "sourceUrl": "https://static.investindia.gov.in/s3fs-public/2022-07/Tamil%20Nadu%20RandD%20Policy%202022.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Clause 6.4 (p. 19) — GCC Payroll Subsidy for High-Skill Talent"
   },
   {
     "stateSlug": "tamil-nadu",
@@ -107,9 +114,10 @@
     "functions": ["engineering", "operations", "technology"],
     "validFrom": "2021-02-01",
     "validTo": "2026-01-31",
-    "sourceName": "Guidance Tamil Nadu",
-    "sourceUrl": "https://investingintamilnadu.com",
-    "asOf": "2024-01-01"
+    "sourceName": "Guidance Tamil Nadu / Industries Department",
+    "sourceUrl": "https://investingintamilnadu.com/wp-content/uploads/2021/02/Tamil-Nadu-Industrial-Policy-2021.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Clause 13.2 (p. 42) — 100% Electricity Tax Exemption for 5 Years"
   },
   {
     "stateSlug": "haryana",
@@ -121,9 +129,10 @@
     "functions": ["engineering", "operations", "technology", "finance"],
     "validFrom": "2020-11-01",
     "validTo": "2026-10-31",
-    "sourceName": "Invest Haryana Single Window",
-    "sourceUrl": "https://investharyana.in",
-    "asOf": "2024-01-01"
+    "sourceName": "Invest Haryana / Industries & Commerce Department",
+    "sourceUrl": "https://investharyana.in/content/pdf/Haryana_Enterprises_and_Employment_Policy_2020.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Section 6.2 (HEEP 2020, p. 35) — 100% Stamp Duty Reimbursement"
   },
   {
     "stateSlug": "haryana",
@@ -135,8 +144,9 @@
     "functions": ["engineering", "operations", "technology"],
     "validFrom": "2020-11-01",
     "validTo": "2026-10-31",
-    "sourceName": "Invest Haryana Single Window",
-    "sourceUrl": "https://investharyana.in",
-    "asOf": "2024-01-01"
+    "sourceName": "Invest Haryana / Industries & Commerce Department",
+    "sourceUrl": "https://investharyana.in/content/pdf/Haryana_Enterprises_and_Employment_Policy_2020.pdf",
+    "asOf": "2024-01-01",
+    "pinpoint": "Section 6.4 (HEEP 2020, p. 38) — 10-Year Electricity Duty Exemption"
   }
 ]

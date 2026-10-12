@@ -39,7 +39,7 @@ export default async function RootLayout({
         <VisualGuide />
 
         {/* Global Header */}
-        <header className="border-b border-border bg-surface px-6 py-3.5 sticky top-0 z-20 backdrop-blur-xs">
+        <header className="border-b border-border gradient-header px-6 py-3.5 sticky top-0 z-20 backdrop-blur-xs shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
               <Link

@@ -66,7 +66,7 @@ export function FactorBar({ factors, score, className = "" }: FactorBarProps) {
       </div>
 
       {/* Factor contribution details */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-text-muted">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-text-muted">
         {factors.map((f) => {
           const style = FACTOR_STYLES[f.factor] ?? FACTOR_STYLES.talent;
           return (
@@ -74,7 +74,7 @@ export function FactorBar({ factors, score, className = "" }: FactorBarProps) {
               <span className={`w-2 h-2 rounded-full ${style.dot}`} />
               <span className="font-medium text-text">{FACTOR_LABELS[f.factor]}:</span>
               <span className="tabular-nums font-mono text-text">+{f.contribution.toFixed(1)}</span>
-              <span className="text-text-muted text-[10px]">({(f.weight * 100).toFixed(0)}% wt)</span>
+              <span className="text-text-muted text-[11px]">({(f.weight * 100).toFixed(0)}% wt)</span>
             </div>
           );
         })}

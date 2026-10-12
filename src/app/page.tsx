@@ -49,7 +49,7 @@ export default async function HomePage() {
         <div className="pt-2 flex flex-wrap items-center gap-3">
           <Link
             href="/planner"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm bg-teal-primary hover:bg-teal-hover text-white text-sm font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm gradient-primary-btn text-white text-sm font-medium transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent shadow-xs"
           >
             <Compass className="w-4 h-4 shrink-0" />
             <span>Launch Setup Planner</span>
@@ -58,7 +58,7 @@ export default async function HomePage() {
 
           <Link
             href="/providers"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm bg-surface hover:bg-background border border-border text-text text-sm font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm gradient-card hover:bg-surface-raised border border-border text-text text-sm font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent shadow-xs"
           >
             <Building2 className="w-4 h-4 shrink-0 text-text-muted" />
             <span>Browse Vetted Providers ({totalProviders})</span>
@@ -67,7 +67,7 @@ export default async function HomePage() {
       </section>
 
       {/* KPI Stats Strip */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-lg border border-border bg-surface">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-lg border border-border gradient-card shadow-xs">
         <div className="space-y-1">
           <div className="text-2xl font-medium text-text tabular-nums tracking-tight">
             {totalCities} Hubs
