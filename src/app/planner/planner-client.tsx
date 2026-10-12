@@ -163,7 +163,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
       {/* Parameters Sidebar */}
       <aside className="lg:col-span-4 bg-surface border border-border rounded-md p-5 space-y-6">
         <div>
-          <h2 className="text-sm font-semibold tracking-tight text-text flex items-center gap-2">
+          <h2 className="text-sm font-medium tracking-tight text-text flex items-center gap-2">
             <Sliders className="w-4 h-4 text-accent" />
             GCC Setup Parameters
           </h2>
@@ -189,7 +189,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
             step={10}
             value={headcount}
             onChange={(e) => setHeadcount(parseInt(e.target.value, 10) || 10)}
-            className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-[#005f60]"
+            className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
           />
           <div className="flex items-center justify-between text-[11px] text-text-muted">
             <span>10 seats</span>
@@ -210,12 +210,13 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
           <div className="flex items-center gap-2">
             <input
               id="sqft-input"
+              aria-label="Space per seat assumption"
               type="number"
               min={40}
               max={120}
               value={sqftPerSeat}
               onChange={(e) => setSqftPerSeat(parseInt(e.target.value, 10) || 60)}
-              className="w-20 px-2 py-1 text-xs border border-border rounded-sm font-mono text-text bg-surface"
+              className="w-20 px-2 py-1 text-xs border border-border rounded-sm font-mono text-text bg-surface focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
             />
             <span className="text-xs text-text-muted">sq ft / seat</span>
           </div>
@@ -236,7 +237,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                   type="checkbox"
                   checked={selectedFunctions.includes(fn.id)}
                   onChange={() => toggleFunction(fn.id)}
-                  className="rounded-sm border-border text-accent focus:ring-accent"
+                  className="rounded-sm border-border text-accent focus:ring-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
                 />
                 <span>{fn.label}</span>
               </label>
@@ -269,7 +270,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.talent}
               aria-label="Talent Availability Weight"
               onChange={(e) => handleWeightChange("talent", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-[#005f60]"
+              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
             />
           </div>
 
@@ -287,7 +288,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.cost}
               aria-label="Cost Efficiency Weight"
               onChange={(e) => handleWeightChange("cost", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-[#005f60]"
+              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
             />
           </div>
 
@@ -305,7 +306,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.ecosystem}
               aria-label="Ecosystem Density Weight"
               onChange={(e) => handleWeightChange("ecosystem", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-[#005f60]"
+              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
             />
           </div>
 
@@ -323,7 +324,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.incentives}
               aria-label="State Policy Incentives Weight"
               onChange={(e) => handleWeightChange("incentives", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-[#005f60]"
+              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
             />
           </div>
         </div>
@@ -344,13 +345,25 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
       <section className="lg:col-span-8 space-y-6">
         <div>
           <div className="flex items-center justify-between pb-3 border-b border-border">
-            <h2 className="text-base font-semibold text-text">
-              Ranked Candidate Cities ({rankingResult.ranked.length})
+            <h2 className="text-base font-medium text-text">
+              Ranked candidate cities ({rankingResult.ranked.length})
             </h2>
             <span className="text-xs text-text-muted">
               Normalized composite score (0–100)
             </span>
           </div>
+
+          {/* Empty state if 0 cities ranked */}
+          {rankingResult.ranked.length === 0 && (
+            <div className="mt-4 rounded-lg border border-border bg-surface p-8 text-center space-y-2">
+              <p className="text-xs font-medium text-text">
+                No candidate cities qualify for ranking with current selections.
+              </p>
+              <p className="text-xs text-text-muted">
+                All candidate cities are missing data for one or more selected factors. Adjust factors or view the unranked cities below.
+              </p>
+            </div>
+          )}
 
           {/* Ranked City Cards */}
           <div className="mt-4 space-y-4">
@@ -366,7 +379,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                       #{idx + 1}
                     </span>
                     <div>
-                      <h3 className="text-base font-semibold text-text">
+                      <h3 className="text-base font-medium text-text">
                         {city.cityName}
                       </h3>
                       <span className="text-xs text-text-muted">
@@ -377,8 +390,8 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
 
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      <span className="text-xs text-text-muted block">Composite Score</span>
-                      <span className="text-lg font-semibold font-mono text-accent tabular-nums">
+                      <span className="text-xs text-text-muted block">Composite score</span>
+                      <span className="text-lg font-medium font-mono text-accent tabular-nums">
                         {city.score.toFixed(1)}
                       </span>
                     </div>
@@ -438,7 +451,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                       min={city.officeCost.min}
                       max={city.officeCost.max}
                       perMonth
-                      className="text-sm font-semibold"
+                      className="text-sm font-medium"
                     />
                   </div>
                 </div>
@@ -449,7 +462,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                     <button
                       type="button"
                       onClick={() => toggleIncentiveDetails(city.cityId)}
-                      className="w-full flex items-center justify-between text-xs text-text hover:text-accent font-medium py-1 focus:outline-none"
+                      className="w-full flex items-center justify-between text-xs text-text hover:text-accent font-medium py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
                     >
                       <span className="flex items-center gap-1.5">
                         <FileText className="w-3.5 h-3.5 text-accent" />
@@ -510,7 +523,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
         {rankingResult.unranked.length > 0 && (
           <div className="pt-6 border-t border-border space-y-4">
             <div className="space-y-1">
-              <h2 className="text-base font-semibold text-text flex items-center gap-2">
+              <h2 className="text-base font-medium text-text flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 text-amber-600" />
                 Not Ranked ({rankingResult.unranked.length})
               </h2>
@@ -528,7 +541,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <h3 className="text-sm font-semibold text-text">
+                      <h3 className="text-sm font-medium text-text">
                         {city.cityName}
                       </h3>
                       <span className="text-xs text-text-muted">

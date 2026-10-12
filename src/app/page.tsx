@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <div className="py-12 max-w-3xl">
       <div className="space-y-6">
-        <h1 className="text-3xl font-semibold tracking-tight text-text">
+        <h1 className="text-3xl font-medium tracking-tight text-text">
           Data-backed planning for GCC setup in India
         </h1>
 
@@ -19,7 +19,7 @@ export default function HomePage() {
         <div className="pt-4 flex items-center gap-4">
           <Link
             href="/planner"
-            className="inline-flex items-center justify-center px-4 py-2.5 rounded-sm bg-teal-primary hover:bg-teal-hover text-white text-sm font-medium transition-colors duration-150"
+            className="inline-flex items-center justify-center px-4 py-2.5 rounded-sm bg-teal-primary hover:bg-teal-hover text-white text-sm font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
           >
             Launch Setup Planner
           </Link>

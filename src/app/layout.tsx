@@ -1,43 +1,73 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { getSession } from "@/modules/auth";
+import { listProviders } from "@/modules/providers";
+import { DemoBanner } from "@/components";
 
 export const metadata: Metadata = {
   title: "GCC Atlas — Single source of truth for Indian GCCs",
   description: "Interactive planner and vetted directory for setting up Global Capability Centres in India.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [session, providersList] = await Promise.all([
+    getSession(),
+    listProviders().catch(() => []),
+  ]);
+
+  const availableProviders = providersList.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+  }));
+
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-background text-text">
         {/* Prototype persistent banner per ADR 006 */}
-        <div
-          role="status"
-          aria-live="polite"
-          className="w-full bg-[#f0f4f4] border-b border-[#d8e4e4] px-4 py-2 text-xs text-[#004d4e] font-medium flex items-center justify-between"
-        >
-          <span>GCC Atlas Prototype — nothing is sent to anyone</span>
-          <span className="text-[11px] text-text-muted">Demo Mode</span>
-        </div>
+        <DemoBanner
+          currentSession={session}
+          availableProviders={availableProviders}
+        />
 
         {/* Global Header */}
         <header className="border-b border-border bg-surface px-6 py-4">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <Link href="/" className="font-semibold text-base tracking-tight text-text hover:text-teal-primary transition-colors duration-150">
+              <Link
+                href="/"
+                className="font-medium text-base tracking-tight text-text hover:text-teal-primary transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+              >
                 GCC Atlas
               </Link>
               <nav className="flex items-center gap-4 text-sm font-normal">
                 <Link
                   href="/planner"
-                  className="text-text-muted hover:text-text transition-colors duration-150"
+                  className="text-text-muted hover:text-text transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
                 >
                   Setup Planner
+                </Link>
+                <Link
+                  href="/providers"
+                  className="text-text-muted hover:text-text transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                >
+                  Providers
+                </Link>
+                <Link
+                  href="/request-intro"
+                  className="text-text-muted hover:text-text transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                >
+                  Request Intro
+                </Link>
+                <Link
+                  href="/inbox"
+                  className="text-text-muted hover:text-text transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                >
+                  Inbox
                 </Link>
               </nav>
             </div>

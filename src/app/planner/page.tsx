@@ -92,7 +92,7 @@ export default async function PlannerPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-text">
+        <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-text">
           GCC Setup Planner
         </h1>
         <p className="mt-1.5 text-sm text-text-muted max-w-3xl leading-relaxed">

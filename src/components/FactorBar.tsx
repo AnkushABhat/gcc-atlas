@@ -14,27 +14,27 @@ const FACTOR_LABELS: Record<Factor, string> = {
   incentives: "Policy Incentives",
 };
 
-// Subtle teal and neutral palette matching design tokens (neutral warm grays + accent deep teal)
+// Palette matching design tokens (neutral warm grays + accent deep teal)
 const FACTOR_STYLES: Record<Factor, { bg: string; text: string; dot: string }> = {
   talent: {
-    bg: "bg-[#005f60]", // primary teal
-    text: "text-[#005f60]",
-    dot: "bg-[#005f60]",
+    bg: "bg-factor-talent",
+    text: "text-factor-talent",
+    dot: "bg-factor-talent",
   },
   cost: {
-    bg: "bg-[#1f7a7b]", // lighter teal
-    text: "text-[#1f7a7b]",
-    dot: "bg-[#1f7a7b]",
+    bg: "bg-factor-cost",
+    text: "text-factor-cost",
+    dot: "bg-factor-cost",
   },
   ecosystem: {
-    bg: "bg-[#4a6b6c]", // slate teal
-    text: "text-[#4a6b6c]",
-    dot: "bg-[#4a6b6c]",
+    bg: "bg-factor-ecosystem",
+    text: "text-factor-ecosystem",
+    dot: "bg-factor-ecosystem",
   },
   incentives: {
-    bg: "bg-[#8a9b9c]", // muted slate
-    text: "text-[#6b7b7c]",
-    dot: "bg-[#8a9b9c]",
+    bg: "bg-factor-incentives",
+    text: "text-factor-incentives",
+    dot: "bg-factor-incentives",
   },
 };
 

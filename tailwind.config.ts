@@ -22,10 +22,34 @@ const config: Config = {
           DEFAULT: "var(--border)",
           strong: "var(--border-strong)",
         },
+        accent: {
+          DEFAULT: "var(--accent)",
+          hover: "var(--accent-hover)",
+          subtle: "var(--accent-subtle)",
+          text: "var(--accent-text)",
+        },
         teal: {
-          primary: "#005f60",
-          hover: "#004d4e",
-          subtle: "#e6f0f0",
+          primary: "var(--accent)",
+          hover: "var(--accent-hover)",
+          subtle: "var(--accent-subtle)",
+        },
+        error: {
+          DEFAULT: "var(--error)",
+          subtle: "var(--error-subtle)",
+        },
+        warning: {
+          DEFAULT: "var(--warning)",
+          subtle: "var(--warning-subtle)",
+        },
+        success: {
+          DEFAULT: "var(--success)",
+          subtle: "var(--success-subtle)",
+        },
+        factor: {
+          talent: "var(--factor-talent)",
+          cost: "var(--factor-cost)",
+          ecosystem: "var(--factor-ecosystem)",
+          incentives: "var(--factor-incentives)",
         },
       },
       borderRadius: {

@@ -1,0 +1,167 @@
+import React, { Suspense } from "react";
+import Link from "next/link";
+import {
+  listProviders,
+  PROVIDER_CATEGORIES,
+  type ProviderCategory,
+} from "@/modules/providers";
+import { listCities } from "@/modules/cities";
+import { ProvidersFilterBar } from "./filter-bar";
+
+export const metadata = {
+  title: "Service Providers — GCC Atlas",
+  description:
+    "Vetted directory of GCC setup advisors, real estate partners, EOR, and legal counsel in India.",
+};
+
+const CATEGORY_LABELS: Record<ProviderCategory, string> = {
+  setup_advisor: "Setup Advisor",
+  real_estate: "Real Estate",
+  eor: "Employer of Record",
+  legal: "Legal",
+  recruiter: "Recruiter",
+};
+
+interface ProvidersPageProps {
+  searchParams: Promise<{
+    category?: string;
+    city?: string;
+  }>;
+}
+
+export default async function ProvidersPage({
+  searchParams,
+}: ProvidersPageProps) {
+  const params = await searchParams;
+  const rawCategory = params.category;
+  const citySlug = params.city;
+
+  const validCategory = PROVIDER_CATEGORIES.includes(
+    rawCategory as ProviderCategory
+  )
+    ? (rawCategory as ProviderCategory)
+    : undefined;
+
+  const [allCities, providers] = await Promise.all([
+    listCities(),
+    listProviders({
+      category: validCategory,
+      citySlug,
+    }),
+  ]);
+
+  const categories = PROVIDER_CATEGORIES.map((cat) => ({
+    id: cat,
+    label: CATEGORY_LABELS[cat],
+  }));
+
+  const cityOptions = allCities.map((c) => ({
+    slug: c.slug,
+    name: c.name,
+  }));
+
+  return (
+    <div className="space-y-6">
+      {/* Page Header */}
+      <div>
+        <h1 className="text-xl font-medium tracking-tight text-text">
+          Service Providers
+        </h1>
+        <p className="text-xs text-text-muted mt-1 max-w-2xl">
+          Directory of firms supporting GCC setup in India across advisory, real
+          estate, employer of record, and corporate legal services. Ordered
+          strictly alphabetically.
+        </p>
+      </div>
+
+      {/* Filter Controls */}
+      <Suspense fallback={<div className="h-14 bg-surface rounded-lg border border-border animate-pulse" />}>
+        <ProvidersFilterBar
+          categories={categories}
+          cities={cityOptions}
+          currentCategory={validCategory}
+          currentCity={citySlug}
+        />
+      </Suspense>
+
+      {/* Results Header */}
+      <div className="flex items-center justify-between text-xs text-text-muted border-b border-border pb-2">
+        <span>
+          Showing {providers.length} {providers.length === 1 ? "provider" : "providers"}
+        </span>
+        <span className="text-[11px]">Alphabetical order &middot; No pay-to-rank</span>
+      </div>
+
+      {/* Directory Content */}
+      {providers.length === 0 ? (
+        <div className="rounded-lg border border-border bg-surface p-12 text-center space-y-3">
+          <p className="text-sm text-text-muted">
+            No providers match these filters. Clear filters.
+          </p>
+          <div>
+            <Link
+              href="/providers"
+              className="inline-flex items-center px-3 py-1.5 rounded bg-teal-primary text-white text-xs font-medium hover:bg-teal-hover transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+            >
+              Clear filters
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {providers.map((provider) => (
+            <div
+              key={provider.slug}
+              className="rounded-lg border border-border bg-surface p-5 flex flex-col justify-between hover:border-teal-primary/40 transition-colors duration-150"
+            >
+              <div className="space-y-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <Link
+                      href={`/providers/${provider.slug}`}
+                      className="text-base font-medium text-text hover:text-teal-primary transition-colors inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                    >
+                      {provider.name}
+                    </Link>
+                    <div className="text-xs text-text-muted mt-0.5">
+                      {CATEGORY_LABELS[provider.category] || provider.category}
+                    </div>
+                  </div>
+
+                  {provider.claimedAt && (
+                    <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-accent-subtle text-accent border border-border">
+                      Claimed
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-xs text-text-secondary leading-relaxed line-clamp-2">
+                  {provider.description}
+                </p>
+
+                <div className="text-xs text-text-muted">
+                  <span className="font-medium text-text">Cities served: </span>
+                  <span className="capitalize">
+                    {provider.citiesServed.join(", ")}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs">
+                <div className="text-[11px] text-text-muted truncate max-w-[240px]">
+                  Source: {provider.sourceName} &middot; {provider.asOf}
+                </div>
+                <Link
+                  href={`/providers/${provider.slug}`}
+                  className="text-xs text-teal-primary font-medium hover:underline inline-flex items-center focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                >
+                  View profile &rarr;
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

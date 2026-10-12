@@ -14,7 +14,7 @@ export default function NotFound() {
       </div>
 
       <div className="space-y-2">
-        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-text">
+        <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-text">
           Page Not Found
         </h1>
         <p className="text-sm text-text-muted max-w-md mx-auto leading-relaxed">
@@ -25,13 +25,13 @@ export default function NotFound() {
       <div className="pt-4 flex items-center justify-center gap-3">
         <Link
           href="/"
-          className="inline-flex items-center justify-center px-4 py-2 rounded-sm border border-border bg-surface hover:bg-surface-raised text-text text-xs font-medium transition-colors duration-150"
+          className="inline-flex items-center justify-center px-4 py-2 rounded-sm border border-border bg-surface hover:bg-surface-raised text-text text-xs font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
         >
           Return Home
         </Link>
         <Link
           href="/planner"
-          className="inline-flex items-center justify-center px-4 py-2 rounded-sm bg-teal-primary hover:bg-teal-hover text-white text-xs font-medium transition-colors duration-150"
+          className="inline-flex items-center justify-center px-4 py-2 rounded-sm bg-teal-primary hover:bg-teal-hover text-white text-xs font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
         >
           Launch Setup Planner
         </Link>

@@ -18,6 +18,12 @@
   --error-subtle: #fef2f2;
   --warning: #b45309;
   --warning-subtle: #fffbeb;
+  --success: #15803d;
+  --success-subtle: #f0fdf4;
+  --factor-talent: #005f60;
+  --factor-cost: #1f7a7b;
+  --factor-ecosystem: #4a6b6c;
+  --factor-incentives: #8a9b9c;
   --radius-sm: 6px;
   --radius-md: 10px;
 }
@@ -25,9 +31,13 @@
 body {
   color: var(--text);
   background-color: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+code, kbd, samp, pre {
+  font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 .tabular-nums {
