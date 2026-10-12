@@ -26,7 +26,7 @@ export function LedgerTable({ entries }: { entries: LedgerEntry[] }) {
       sortable: true,
       sortFn: (a, b) =>
         new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
-      className: "text-text-muted whitespace-nowrap",
+      className: "font-mono text-xs text-text-muted whitespace-nowrap",
       accessor: (entry) =>
         new Date(entry.createdAt).toISOString().split("T")[0],
     },
@@ -34,7 +34,7 @@ export function LedgerTable({ entries }: { entries: LedgerEntry[] }) {
       key: "reason",
       header: "Description",
       sortable: true,
-      className: "text-text font-medium",
+      className: "text-text font-medium text-xs",
       accessor: (entry) => REASON_LABELS[entry.reason] || entry.reason,
     },
     {
@@ -45,11 +45,11 @@ export function LedgerTable({ entries }: { entries: LedgerEntry[] }) {
       className: "font-mono font-medium",
       accessor: (entry) => (
         <span
-          className={
+          className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium ${
             entry.delta > 0
-              ? "text-success font-medium"
-              : "text-error font-medium"
-          }
+              ? "text-success font-semibold"
+              : "text-error font-semibold"
+          }`}
         >
           {entry.delta > 0 ? `+${entry.delta}` : entry.delta}
         </span>
@@ -95,7 +95,7 @@ export function DemoTopUpButton({ providerSlug }: { providerSlug: string }) {
       type="button"
       onClick={handleTopUp}
       disabled={isPending}
-      className="inline-flex items-center px-3 py-1.5 rounded bg-teal-primary text-white text-xs font-medium hover:bg-teal-hover transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:opacity-50 cursor-pointer"
+      className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-primary text-white text-xs font-medium hover:bg-teal-hover transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 cursor-pointer shadow-subtle hover:shadow-elevated active:translate-y-0"
     >
       {isPending ? "Adding credits..." : "Demo: add 5 credits"}
     </button>
@@ -161,7 +161,7 @@ export function OfferActionButtons({
               type="button"
               onClick={handleAccept}
               disabled={isPending}
-              className="px-3 py-1.5 rounded bg-teal-primary text-white text-xs font-medium hover:bg-teal-hover transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:opacity-50 cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-teal-primary text-white text-xs font-medium hover:bg-teal-hover transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 cursor-pointer shadow-subtle hover:shadow-elevated active:translate-y-0"
             >
               {isPending ? "Accepting..." : "Accept (1 credit)"}
             </button>
@@ -169,7 +169,7 @@ export function OfferActionButtons({
               type="button"
               onClick={handleDecline}
               disabled={isPending}
-              className="px-3 py-1.5 rounded border border-border text-text text-xs font-medium hover:bg-surface-raised transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:opacity-50 cursor-pointer"
+              className="px-4 py-2 rounded-xl border border-border bg-surface text-text text-xs font-medium hover:bg-surface-raised transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 cursor-pointer shadow-subtle hover:border-border-strong active:translate-y-0"
             >
               Decline
             </button>
@@ -181,7 +181,7 @@ export function OfferActionButtons({
             type="button"
             onClick={handleFlagInvalid}
             disabled={isPending}
-            className="px-3 py-1.5 rounded border border-red-200 text-red-600 text-xs font-medium hover:bg-red-50 transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:opacity-50 cursor-pointer"
+            className="px-4 py-2 rounded-xl border border-red-200 bg-red-50 text-red-700 text-xs font-medium hover:bg-red-100/70 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 cursor-pointer shadow-subtle active:translate-y-0"
           >
             {isPending ? "Refunding..." : "Flag as invalid (Refund 1 credit)"}
           </button>
@@ -212,8 +212,8 @@ export function SwitchProviderHelper({
   };
 
   return (
-    <div className="rounded-lg border border-border bg-surface p-6 sm:p-8 space-y-4">
-      <h2 className="text-sm font-medium tracking-tight text-text">
+    <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8 space-y-4 shadow-elevated">
+      <h2 className="text-sm font-semibold tracking-tight text-text">
         Select a Provider to View Inbox
       </h2>
       <p className="text-xs text-text-muted leading-relaxed">
@@ -230,10 +230,17 @@ export function SwitchProviderHelper({
             data-testid={`switch-provider-${p.slug}`}
             onClick={() => handleSelect(p.slug)}
             disabled={isPending}
-            className="p-3 text-left rounded border border-border bg-background hover:border-teal-primary text-xs font-medium text-text transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:opacity-50"
+            className="p-4 text-left rounded-xl border border-border bg-surface-raised hover:bg-surface hover:border-teal-primary/40 text-xs font-medium text-text transition-all duration-200 hover:shadow-subtle hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 group"
           >
-            <div className="font-medium text-text">{p.name}</div>
-            <div className="text-[11px] text-teal-primary mt-1">Switch to inbox &rarr;</div>
+            <div className="font-semibold text-text group-hover:text-teal-primary transition-colors">
+              {p.name}
+            </div>
+            <div className="text-[11px] text-teal-primary mt-1.5 font-medium flex items-center gap-1">
+              <span>Switch to inbox</span>
+              <span className="transition-transform duration-150 group-hover:translate-x-0.5">
+                &rarr;
+              </span>
+            </div>
           </button>
         ))}
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Coins } from "lucide-react";
+import { Coins, ShieldCheck } from "lucide-react";
 import { getSession } from "@/modules/auth";
 import { getProvider, listProviders } from "@/modules/providers";
 import {
@@ -26,12 +26,20 @@ export default async function InboxPage() {
   if (session.role !== "provider" || !session.providerSlug) {
     const allProviders = await listProviders();
     return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-xl font-medium tracking-tight text-text">
+      <div className="space-y-6 relative">
+        <div
+          className="ambient-glow-teal -top-24 -right-16 w-80 h-80 opacity-40 pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-subtle text-accent border border-accent/20 text-xs font-medium">
+            <ShieldCheck className="w-3.5 h-3.5 text-accent" />
+            <span>Lead Routing Portal &middot; Demo Mode</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-text">
             Provider Inbox
           </h1>
-          <p className="text-xs text-text-muted mt-1">
+          <p className="text-xs sm:text-sm text-text-muted mt-1 leading-relaxed">
             Review incoming qualified GCC setup leads, accept offers, and manage credits.
           </p>
         </div>
@@ -56,72 +64,93 @@ export default async function InboxPage() {
   ]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relative">
+      {/* Subtle Ambient Background Texture */}
+      <div
+        className="ambient-glow-teal -top-24 -right-16 w-80 h-80 opacity-40 pointer-events-none"
+        aria-hidden="true"
+      />
+
       {/* Persistent notice per ADR 006 */}
       <div
         role="note"
-        className="p-3.5 rounded-lg border border-border bg-accent-subtle text-xs text-accent flex items-center justify-between"
+        className="p-4 rounded-2xl border border-accent/20 bg-accent-subtle text-xs text-accent flex items-center justify-between shadow-subtle flex-wrap gap-2"
       >
-        <span>Prototype: nothing is sent to anyone.</span>
-        <span className="text-[11px] text-text-muted">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-accent" />
+          <span className="font-medium">Prototype: nothing is sent to anyone.</span>
+        </div>
+        <span className="text-[11px] text-text-muted bg-surface px-3 py-1 rounded-full border border-border">
           Active Provider: {provider?.name ?? providerSlug}
         </span>
       </div>
 
       {/* Header & Balance Overview */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-border">
-        <div>
-          <h1 className="text-2xl font-medium tracking-tight text-text">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 pb-6 border-b border-border/80">
+        <div className="space-y-1.5">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-text">
             Provider Inbox
           </h1>
-          <div className="text-xs text-text-muted mt-1">
+          <div className="text-xs sm:text-sm text-text-muted">
             Managing leads for{" "}
             <Link
               href={`/providers/${providerSlug}`}
-              className="text-teal-primary font-medium hover:underline"
+              className="text-teal-primary font-semibold hover:underline inline-flex items-center gap-1"
             >
-              {provider?.name ?? providerSlug}
+              <span>{provider?.name ?? providerSlug}</span>
             </Link>
           </div>
         </div>
 
-        <div className="flex items-center gap-3.5 bg-surface p-3.5 rounded-lg border border-border">
-          <div className="w-10 h-10 rounded-md bg-accent-subtle text-accent border border-border flex items-center justify-center shrink-0">
-            <Coins className="w-4 h-4" />
+        {/* Credit Wallet Widget */}
+        <div className="rounded-2xl bg-surface border border-border shadow-elevated p-5 sm:p-6 flex items-center gap-4 sm:gap-5">
+          <div className="relative flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl bg-accent-subtle text-accent border border-accent/20 flex items-center justify-center shrink-0">
+              <Coins className="w-5 h-5 text-accent" />
+            </div>
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
           </div>
-          <div>
-            <div className="text-[11px] text-text-muted font-medium">
-              Available credits
+          <div className="space-y-0.5">
+            <div className="text-[11px] text-text-muted font-medium flex items-center gap-1.5">
+              <span>Available credits</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="text-[10px] text-emerald-700 font-medium">Live</span>
             </div>
             <div
               data-testid="credit-balance"
-              className="text-lg font-medium font-mono text-text tabular-nums"
+              className="text-xl font-bold font-mono text-text tabular-nums"
             >
               {currentBalance}{" "}
-              <span className="text-xs font-normal text-text-muted">
+              <span className="text-xs font-normal text-text-muted font-sans">
                 {currentBalance === 1 ? "credit" : "credits"}
               </span>
             </div>
+            <div className="text-[10px] text-text-muted">
+              1 credit unlocks 1 verified lead intro
+            </div>
           </div>
-          <div className="pl-3 border-l border-border">
+          <div className="pl-3 sm:pl-4 border-l border-border">
             <DemoTopUpButton providerSlug={providerSlug} />
           </div>
         </div>
       </div>
 
       {/* Offers Section */}
-      <div className="space-y-4">
+      <div className="space-y-5">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-medium tracking-tight text-text">
+          <h2 className="text-sm font-semibold tracking-tight text-text">
             Lead offers ({offers.length})
           </h2>
-          <span className="text-[11px] text-text-muted">
+          <span className="text-[11px] text-text-muted bg-surface-raised px-2.5 py-0.5 rounded-full border border-border">
             1 credit per accepted lead &middot; 72h validity
           </span>
         </div>
 
         {offers.length === 0 ? (
-          <div className="rounded-lg border border-border bg-surface p-12 text-center">
+          <div className="rounded-2xl border border-border bg-surface p-12 text-center shadow-subtle">
             <p className="text-xs text-text-muted">No lead offers in your inbox.</p>
           </div>
         ) : (
@@ -130,15 +159,15 @@ export default async function InboxPage() {
               <div
                 key={offer.id}
                 data-testid={`offer-card-${offer.id}`}
-                className="rounded-lg border border-border bg-surface p-5 space-y-4"
+                className="rounded-2xl border border-border bg-surface p-6 space-y-4 shadow-subtle hover:shadow-elevated transition-all"
               >
                 {/* Offer Header */}
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="text-xs font-medium text-text flex items-center gap-2">
+                    <div className="text-sm font-semibold text-text flex items-center gap-2">
                       <span>{offer.buyerCompany}</span>
                       <span className="text-text-muted">&middot;</span>
-                      <span className="text-text-muted capitalize">
+                      <span className="text-text-muted capitalize font-normal">
                         {offer.citySlug}
                       </span>
                     </div>
@@ -149,7 +178,7 @@ export default async function InboxPage() {
 
                   <div>
                     {offer.status === "offered" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-200 inline-flex items-center gap-1.5">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-200 inline-flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                         <span>Offered (Active)</span>
                       </span>
@@ -157,26 +186,26 @@ export default async function InboxPage() {
                     {offer.status === "accepted" && (
                       <span
                         data-testid="status-accepted"
-                        className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 inline-flex items-center gap-1.5"
+                        className="px-3 py-1 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 inline-flex items-center gap-1.5"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                         <span>Accepted</span>
                       </span>
                     )}
                     {offer.status === "declined" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600 border border-gray-200 inline-flex items-center gap-1.5">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600 border border-gray-200 inline-flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
                         <span>Declined</span>
                       </span>
                     )}
                     {offer.status === "expired" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-500 border border-gray-200 inline-flex items-center gap-1.5">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-500 border border-gray-200 inline-flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
                         <span>Expired</span>
                       </span>
                     )}
                     {offer.status === "refunded" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200 inline-flex items-center gap-1.5">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200 inline-flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
                         <span>Refunded (+1 credit)</span>
                       </span>
@@ -185,33 +214,33 @@ export default async function InboxPage() {
                 </div>
 
                 {/* Offer Parameters */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-background p-3 rounded border border-border">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-surface-raised p-4 rounded-xl border border-border">
                   <div>
                     <span className="text-[11px] text-text-muted block">Headcount</span>
-                    <span className="font-medium text-text">{offer.headcount} seats</span>
+                    <span className="font-semibold text-text">{offer.headcount} seats</span>
                   </div>
                   <div>
                     <span className="text-[11px] text-text-muted block">Function</span>
-                    <span className="font-medium text-text capitalize">
+                    <span className="font-semibold text-text capitalize">
                       {offer.function.replace(/_/g, " ")}
                     </span>
                   </div>
                   <div>
                     <span className="text-[11px] text-text-muted block">Category</span>
-                    <span className="font-medium text-text capitalize">
+                    <span className="font-semibold text-text capitalize">
                       {offer.category.replace(/_/g, " ")}
                     </span>
                   </div>
                   <div>
                     <span className="text-[11px] text-text-muted block">Timeline</span>
-                    <span className="font-medium text-text capitalize">
+                    <span className="font-semibold text-text capitalize">
                       {offer.timeline.replace(/_/g, " ")}
                     </span>
                   </div>
                 </div>
 
                 {offer.note && (
-                  <p className="text-xs text-text-secondary leading-relaxed italic">
+                  <p className="text-xs text-text-muted leading-relaxed italic bg-background p-3 rounded-xl border border-border/60">
                     &ldquo;{offer.note}&rdquo;
                   </p>
                 )}
@@ -221,12 +250,13 @@ export default async function InboxPage() {
                   {offer.buyerEmail ? (
                     <div
                       data-testid="buyer-contact-revealed"
-                      className="p-3 rounded bg-emerald-50/60 border border-emerald-200 text-xs text-text space-y-1"
+                      className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-text space-y-1.5"
                     >
-                      <div className="font-medium text-emerald-900">
-                        Verified Buyer Contact:
+                      <div className="font-semibold text-emerald-900 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                        <span>Verified Buyer Contact:</span>
                       </div>
-                      <div>
+                      <div className="text-xs">
                         <strong>{offer.buyerName}</strong> &middot;{" "}
                         <a
                           href={`mailto:${offer.buyerEmail}`}
@@ -239,7 +269,7 @@ export default async function InboxPage() {
                   ) : (
                     <div
                       data-testid="buyer-contact-hidden"
-                      className="p-3 rounded bg-background border border-border text-xs text-text-muted italic"
+                      className="p-3.5 rounded-xl bg-surface-raised border border-border text-xs text-text-muted italic"
                     >
                       Contact hidden until accepted. Spend 1 credit to reveal full buyer contact details.
                     </div>
@@ -265,7 +295,7 @@ export default async function InboxPage() {
       {/* Credit Ledger Section */}
       <div className="space-y-4 pt-4 border-t border-border">
         <div>
-          <h2 className="text-sm font-medium tracking-tight text-text">
+          <h2 className="text-sm font-semibold tracking-tight text-text">
             Credit ledger
           </h2>
           <p className="text-[11px] text-text-muted mt-0.5">
@@ -273,7 +303,9 @@ export default async function InboxPage() {
           </p>
         </div>
 
-        <LedgerTable entries={ledgerEntries} />
+        <div className="rounded-2xl border border-border bg-surface shadow-subtle overflow-hidden">
+          <LedgerTable entries={ledgerEntries} />
+        </div>
       </div>
     </div>
   );

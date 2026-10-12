@@ -3,6 +3,7 @@
 import React, { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Filter, X } from "lucide-react";
 import type { ProviderCategory } from "@/modules/providers";
 
 interface CityOption {
@@ -44,60 +45,117 @@ export function ProvidersFilterBar({
   const hasActiveFilters = Boolean(currentCategory || currentCity);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-lg border border-border bg-surface">
-      <div className="flex flex-wrap items-center gap-4">
-        {/* Category filter */}
-        <div className="flex items-center gap-2">
-          <label htmlFor="category-filter" className="text-xs text-text-muted font-medium">
-            Category:
-          </label>
-          <select
-            id="category-filter"
-            value={currentCategory || ""}
-            onChange={(e) => handleFilterChange("category", e.target.value)}
-            disabled={isPending}
-            className="bg-background border border-border rounded px-2.5 py-1 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer disabled:opacity-50"
-          >
-            <option value="">All categories</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
+    <div className="rounded-2xl border border-border bg-surface p-5 shadow-subtle space-y-4">
+      {/* Category Pills Bar */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-medium text-text-muted flex items-center gap-1.5">
+            <Filter className="w-3.5 h-3.5 text-accent" />
+            <span>Category:</span>
+          </span>
+          {hasActiveFilters && (
+            <Link
+              href="/providers"
+              className="inline-flex items-center gap-1 text-xs text-teal-primary hover:text-teal-hover hover:underline font-medium"
+            >
+              <X className="w-3 h-3" />
+              <span>Clear filters</span>
+            </Link>
+          )}
         </div>
 
-        {/* City filter */}
-        <div className="flex items-center gap-2">
-          <label htmlFor="city-filter" className="text-xs text-text-muted font-medium">
-            City served:
-          </label>
-          <select
-            id="city-filter"
-            value={currentCity || ""}
-            onChange={(e) => handleFilterChange("city", e.target.value)}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => handleFilterChange("category", "")}
             disabled={isPending}
-            className="bg-background border border-border rounded px-2.5 py-1 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer disabled:opacity-50"
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer ${
+              !currentCategory
+                ? "bg-teal-primary text-white shadow-subtle"
+                : "bg-surface-raised hover:bg-surface text-text-muted hover:text-text border border-border hover:border-border-strong"
+            }`}
           >
-            <option value="">All cities</option>
-            {cities.map((city) => (
-              <option key={city.slug} value={city.slug}>
-                {city.name}
-              </option>
-            ))}
-          </select>
+            All categories
+          </button>
+          {categories.map((cat) => {
+            const isActive = currentCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => handleFilterChange("category", cat.id)}
+                disabled={isPending}
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer ${
+                  isActive
+                    ? "bg-teal-primary text-white shadow-subtle"
+                    : "bg-surface-raised hover:bg-surface text-text-muted hover:text-text border border-border hover:border-border-strong"
+                }`}
+              >
+                {cat.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Clear filters action */}
-      {hasActiveFilters && (
-        <Link
-          href="/providers"
-          className="text-xs text-teal-primary hover:underline font-medium"
-        >
-          Clear filters
-        </Link>
-      )}
+      {/* Dropdown Filters Row */}
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-border/80">
+        <div className="flex flex-wrap items-center gap-4">
+          {/* Category filter select */}
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="category-filter"
+              className="text-xs text-text-muted font-medium"
+            >
+              Category:
+            </label>
+            <select
+              id="category-filter"
+              value={currentCategory || ""}
+              onChange={(e) => handleFilterChange("category", e.target.value)}
+              disabled={isPending}
+              className="bg-background border border-border rounded-xl px-3 py-1.5 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer disabled:opacity-50 transition-all"
+            >
+              <option value="">All categories</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* City filter select */}
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="city-filter"
+              className="text-xs text-text-muted font-medium"
+            >
+              City served:
+            </label>
+            <select
+              id="city-filter"
+              value={currentCity || ""}
+              onChange={(e) => handleFilterChange("city", e.target.value)}
+              disabled={isPending}
+              className="bg-background border border-border rounded-xl px-3 py-1.5 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer disabled:opacity-50 transition-all"
+            >
+              <option value="">All cities</option>
+              {cities.map((city) => (
+                <option key={city.slug} value={city.slug}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {isPending && (
+          <span className="text-[11px] text-teal-primary font-medium animate-pulse">
+            Filtering directory...
+          </span>
+        )}
+      </div>
     </div>
   );
 }

@@ -18,7 +18,6 @@ import {
   FileText,
   ExternalLink,
   ChevronDown,
-  ChevronUp,
   Users,
   Globe,
   Landmark,
@@ -165,25 +164,29 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      {/* Parameters Sidebar */}
-      <aside className="lg:col-span-4 gradient-card border border-border rounded-md p-5 space-y-6 shadow-xs">
-        <div>
+      {/* Parameters Sidebar — Modern Elevated Card */}
+      <aside className="lg:col-span-4 rounded-2xl bg-surface border border-border p-6 space-y-6 shadow-elevated">
+        <div className="space-y-1">
           <h2 className="text-sm font-medium tracking-tight text-text flex items-center gap-2">
-            <Sliders className="w-4 h-4 text-accent" />
-            GCC Setup Parameters
+            <span className="w-7 h-7 rounded-lg bg-accent-subtle text-accent border border-accent/20 flex items-center justify-center shrink-0">
+              <Sliders className="w-4 h-4" />
+            </span>
+            <span>GCC Setup Parameters</span>
           </h2>
-          <p className="text-xs text-text-muted mt-1">
+          <p className="text-xs text-text-muted mt-1 leading-relaxed">
             Adjust target capacity and strategic priorities to recalculate composite rankings.
           </p>
         </div>
 
         {/* Headcount Input */}
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           <div className="flex items-center justify-between text-xs">
             <label htmlFor="headcount-input" className="font-medium text-text">
               Target Headcount
             </label>
-            <span className="font-mono text-text tabular-nums">{headcount} seats</span>
+            <span className="font-mono text-accent font-medium tabular-nums bg-accent-subtle px-2 py-0.5 rounded-md border border-accent/20 text-xs">
+              {headcount} seats
+            </span>
           </div>
           <input
             id="headcount-input"
@@ -194,7 +197,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
             step={10}
             value={headcount}
             onChange={(e) => setHeadcount(parseInt(e.target.value, 10) || 10)}
-            className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+            className="w-full h-2 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           />
           <div className="flex items-center justify-between text-[11px] text-text-muted">
             <span>10 seats</span>
@@ -203,12 +206,12 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
         </div>
 
         {/* Space Density Assumption */}
-        <div className="space-y-1.5 pt-2 border-t border-border">
+        <div className="space-y-2 pt-3 border-t border-border/80">
           <div className="flex items-center justify-between text-xs">
             <label htmlFor="sqft-input" className="font-medium text-text">
               Space per Seat
             </label>
-            <span className="text-[10px] bg-surface-raised px-1.5 py-0.5 rounded text-text-muted border border-border">
+            <span className="text-[10px] bg-surface-raised px-2 py-0.5 rounded-full text-text-muted border border-border font-medium">
               Assumption
             </span>
           </div>
@@ -221,54 +224,61 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               max={120}
               value={sqftPerSeat}
               onChange={(e) => setSqftPerSeat(parseInt(e.target.value, 10) || 60)}
-              className="w-20 px-2 py-1 text-xs border border-border rounded-sm font-mono text-text bg-surface focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              className="w-20 px-2.5 py-1 text-xs border border-border rounded-lg font-mono text-text bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             />
             <span className="text-xs text-text-muted">sq ft / seat</span>
           </div>
         </div>
 
         {/* Functional Scope */}
-        <div className="space-y-2 pt-2 border-t border-border">
+        <div className="space-y-2.5 pt-3 border-t border-border/80">
           <span className="text-xs font-medium text-text block">
             Functional Scope
           </span>
           <div className="space-y-1.5">
-            {ALL_FUNCTIONS.map((fn) => (
-              <label
-                key={fn.id}
-                className="flex items-center gap-2 text-xs text-text cursor-pointer hover:text-accent transition-colors"
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedFunctions.includes(fn.id)}
-                  onChange={() => toggleFunction(fn.id)}
-                  className="rounded-sm border-border text-accent focus:ring-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-                />
-                <span>{fn.label}</span>
-              </label>
-            ))}
+            {ALL_FUNCTIONS.map((fn) => {
+              const isChecked = selectedFunctions.includes(fn.id);
+              return (
+                <label
+                  key={fn.id}
+                  className={`flex items-center gap-2.5 text-xs text-text cursor-pointer px-2.5 py-1.5 rounded-lg border transition-all duration-150 ${
+                    isChecked
+                      ? "bg-accent-subtle/40 border-accent/30 text-text font-medium"
+                      : "bg-surface hover:bg-surface-raised border-border text-text-muted"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => toggleFunction(fn.id)}
+                    className="rounded border-border text-accent focus:ring-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent h-3.5 w-3.5"
+                  />
+                  <span>{fn.label}</span>
+                </label>
+              );
+            })}
           </div>
         </div>
 
         {/* Factor Priority Weights */}
-        <div className="space-y-4 pt-2 border-t border-border">
+        <div className="space-y-4 pt-3 border-t border-border/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text">
               Priority Weights
             </span>
-            <span className="text-[11px] font-mono text-text-muted">
+            <span className="text-[11px] font-mono text-text-muted bg-surface-raised px-2 py-0.5 rounded-md border border-border">
               Total: {totalWeight}
             </span>
           </div>
 
           {/* Talent Weight */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-text flex items-center gap-1.5">
                 <Users className="w-3.5 h-3.5 text-accent shrink-0" />
                 <span>Talent Availability</span>
               </span>
-              <span className="font-mono text-text-muted text-[11px]">{weights.talent}</span>
+              <span className="font-mono text-accent font-medium text-[11px]">{weights.talent}</span>
             </div>
             <input
               type="range"
@@ -278,18 +288,18 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.talent}
               aria-label="Talent Availability Weight"
               onChange={(e) => handleWeightChange("talent", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              className="w-full h-2 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             />
           </div>
 
           {/* Cost Weight */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-text flex items-center gap-1.5">
                 <Building2 className="w-3.5 h-3.5 text-accent shrink-0" />
                 <span>Cost Efficiency (Lower Rent)</span>
               </span>
-              <span className="font-mono text-text-muted text-[11px]">{weights.cost}</span>
+              <span className="font-mono text-accent font-medium text-[11px]">{weights.cost}</span>
             </div>
             <input
               type="range"
@@ -299,18 +309,18 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.cost}
               aria-label="Cost Efficiency Weight"
               onChange={(e) => handleWeightChange("cost", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              className="w-full h-2 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             />
           </div>
 
           {/* Ecosystem Density Weight */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-text flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5 text-accent shrink-0" />
                 <span>Ecosystem Density</span>
               </span>
-              <span className="font-mono text-text-muted text-[11px]">{weights.ecosystem}</span>
+              <span className="font-mono text-accent font-medium text-[11px]">{weights.ecosystem}</span>
             </div>
             <input
               type="range"
@@ -320,18 +330,18 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.ecosystem}
               aria-label="Ecosystem Density Weight"
               onChange={(e) => handleWeightChange("ecosystem", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              className="w-full h-2 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             />
           </div>
 
           {/* Policy Incentives Weight */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-text flex items-center gap-1.5">
                 <Landmark className="w-3.5 h-3.5 text-accent shrink-0" />
                 <span>State Policy Incentives</span>
               </span>
-              <span className="font-mono text-text-muted text-[11px]">{weights.incentives}</span>
+              <span className="font-mono text-accent font-medium text-[11px]">{weights.incentives}</span>
             </div>
             <input
               type="range"
@@ -341,16 +351,16 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               value={weights.incentives}
               aria-label="State Policy Incentives Weight"
               onChange={(e) => handleWeightChange("incentives", parseInt(e.target.value, 10))}
-              className="w-full h-1.5 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              className="w-full h-2 bg-surface-raised rounded-lg appearance-none cursor-pointer accent-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             />
           </div>
         </div>
 
         {/* ADR 006 Disclaimer Box */}
-        <div className="p-3 bg-surface-raised border border-border rounded-sm text-[11px] text-text-muted space-y-1">
+        <div className="p-3.5 bg-surface-raised/80 border border-border rounded-xl text-[11px] text-text-muted space-y-1 shadow-xs">
           <div className="flex items-center gap-1.5 font-medium text-text">
             <AlertCircle className="w-3.5 h-3.5 text-accent" />
-            Prototype Simulation
+            <span>Prototype Simulation</span>
           </div>
           <p className="leading-relaxed">
             All ranking scores and cost estimates are generated client-side from primary verified datasets. Inquiries and partner requests do not send real communications.
@@ -365,14 +375,14 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
             <h2 className="text-base font-medium text-text">
               Ranked candidate cities ({rankingResult.ranked.length})
             </h2>
-            <span className="text-xs text-text-muted">
+            <span className="text-xs text-text-muted font-medium bg-surface-raised px-2.5 py-0.5 rounded-full border border-border">
               Normalized composite score (0–100)
             </span>
           </div>
 
           {/* Empty state if 0 cities ranked */}
           {rankingResult.ranked.length === 0 && (
-            <div className="mt-4 rounded-lg border border-border bg-surface p-8 text-center space-y-2">
+            <div className="mt-4 rounded-2xl border border-border bg-surface p-8 text-center space-y-2 shadow-subtle">
               <p className="text-xs font-medium text-text">
                 No candidate cities qualify for ranking with current selections.
               </p>
@@ -387,36 +397,36 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
             {rankingResult.ranked.map((city, idx) => (
               <div
                 key={city.cityId}
-                className="gradient-card border border-border rounded-md p-5 space-y-4 hover:border-border-strong hover:shadow-xs transition-all duration-150"
+                className="rounded-2xl border border-border bg-surface p-6 space-y-5 shadow-subtle hover:shadow-elevated hover:border-accent/40 transition-all duration-200 group"
               >
-                {/* Header row */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-3">
-                    <span className="w-7 h-7 rounded-full bg-gradient-to-br from-teal-primary to-teal-hover text-white flex items-center justify-center text-xs font-mono font-medium shadow-xs">
+                {/* Header row — CRITICAL: First h3 in section MUST be city.cityName */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3.5">
+                    <span className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-primary to-teal-hover text-white flex items-center justify-center text-xs font-mono font-medium shadow-xs shrink-0">
                       #{idx + 1}
                     </span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="text-base font-medium text-text">
+                        <h3 className="text-base sm:text-lg font-medium text-text">
                           {city.cityName}
                         </h3>
                         {idx === 0 && (
-                          <span className="px-2 py-0.5 rounded text-xs font-medium bg-accent-subtle text-accent border border-border inline-flex items-center gap-1">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-subtle text-accent border border-accent/25 inline-flex items-center gap-1 shadow-xs transform -rotate-1 hover:rotate-0 transition-transform">
                             <Sparkles className="w-3 h-3 text-accent" />
                             <span>Top Match</span>
                           </span>
                         )}
                       </div>
-                      <span className="text-xs text-text-muted">
+                      <span className="text-xs text-text-muted capitalize">
                         {city.stateName}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <div className="text-right">
-                      <span className="text-xs text-text-muted block">Composite score</span>
-                      <span className="text-lg font-medium font-mono text-accent tabular-nums">
+                    <div className="text-left sm:text-right">
+                      <span className="text-[11px] text-text-muted block">Composite score</span>
+                      <span className="text-xl font-medium font-mono text-accent tabular-nums tracking-tight">
                         {city.score.toFixed(1)}
                       </span>
                     </div>
@@ -459,9 +469,11 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                 </div>
 
                 {/* Estimated Monthly Office Cost Range */}
-                <div className="p-3 bg-surface-raised border border-border rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                  <div className="flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-text-muted shrink-0" />
+                <div className="p-3.5 bg-surface-raised border border-border rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 text-text-muted">
+                      <Building2 className="w-4 h-4" />
+                    </div>
                     <div>
                       <span className="font-medium text-text block">
                         Estimated Monthly Office Rent
@@ -481,68 +493,74 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                   </div>
                 </div>
 
-                {/* Applicable State Incentives Collapsible */}
+                {/* Applicable State Incentives Collapsible with Smooth CSS Grid Transition */}
                 {city.incentives.length > 0 ? (
                   <div className="pt-2 border-t border-border">
                     <button
                       type="button"
                       onClick={() => toggleIncentiveDetails(city.cityId)}
-                      className="w-full flex items-center justify-between text-xs text-text hover:text-accent font-medium py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                      aria-expanded={Boolean(expandedIncentives[city.cityId])}
+                      className="w-full flex items-center justify-between text-xs text-text hover:text-accent font-medium py-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-lg transition-colors group/btn"
                     >
                       <span className="flex items-center gap-1.5">
                         <FileText className="w-3.5 h-3.5 text-accent" />
-                        Applicable State Incentives ({city.incentives.length})
+                        <span>Applicable State Incentives ({city.incentives.length})</span>
                       </span>
-                      {expandedIncentives[city.cityId] ? (
-                        <ChevronUp className="w-4 h-4 text-text-muted" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 text-text-muted" />
-                      )}
+                      <ChevronDown
+                        className={`w-4 h-4 text-text-muted transition-transform duration-200 ${
+                          expandedIncentives[city.cityId] ? "rotate-180 text-accent" : ""
+                        }`}
+                      />
                     </button>
 
-                    {expandedIncentives[city.cityId] && (
-                      <div className="mt-2 space-y-2.5 pt-2 border-t border-border">
-                        {city.incentives.map((inc) => (
-                          <div
-                            key={inc.id}
-                            className="p-3 bg-surface-raised/90 rounded-sm border border-border text-xs space-y-2"
-                          >
-                            <div className="flex items-start justify-between gap-2">
-                              <span className="font-medium text-text text-xs sm:text-[13px]">{inc.name}</span>
-                              <span className="text-xs px-2 py-0.5 rounded border border-border bg-surface text-text-muted font-mono capitalize shrink-0">
-                                {inc.type.replace("_", " ")}
-                              </span>
-                            </div>
-                            <p className="text-xs text-text leading-relaxed">
-                              {inc.summary}
-                            </p>
-                            {inc.pinpoint && (
-                              <div className="p-2 rounded bg-surface border border-border/80 flex items-center gap-1.5 text-xs text-teal-primary font-medium">
-                                <FileText className="w-3.5 h-3.5 shrink-0" />
-                                <span>Pinpointed Clause: <strong className="font-semibold text-text">{inc.pinpoint}</strong></span>
+                    <div
+                      className="accordion-grid"
+                      data-expanded={Boolean(expandedIncentives[city.cityId])}
+                    >
+                      <div className="accordion-inner">
+                        <div className="mt-2 space-y-2.5 pt-2 border-t border-border">
+                          {city.incentives.map((inc) => (
+                            <div
+                              key={inc.id}
+                              className="p-3.5 bg-surface-raised rounded-xl border border-border text-xs space-y-2 shadow-subtle"
+                            >
+                              <div className="flex items-start justify-between gap-2">
+                                <span className="font-medium text-text text-xs sm:text-[13px]">{inc.name}</span>
+                                <span className="text-[11px] px-2 py-0.5 rounded-full border border-border bg-surface text-text-muted font-mono capitalize shrink-0">
+                                  {inc.type.replace("_", " ")}
+                                </span>
                               </div>
-                            )}
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-text-muted pt-1.5 gap-1.5 border-t border-border/60">
-                              <span>Source: {inc.sourceName}</span>
-                              <a
-                                href={inc.sourceUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-accent hover:underline inline-flex items-center gap-1 font-medium bg-surface px-2.5 py-1 rounded border border-border/80 hover:border-accent shadow-xs"
-                                title="Opens official government policy PDF directly at source"
-                              >
-                                <FileText className="w-3.5 h-3.5 text-accent shrink-0" />
-                                <span>Official Policy Doc / PDF</span>
-                                <ExternalLink className="w-3 h-3 ml-0.5" />
-                              </a>
+                              <p className="text-xs text-text leading-relaxed">
+                                {inc.summary}
+                              </p>
+                              {inc.pinpoint && (
+                                <div className="p-2.5 rounded-lg bg-surface border border-border/80 flex items-center gap-1.5 text-xs text-teal-primary font-medium">
+                                  <FileText className="w-3.5 h-3.5 shrink-0" />
+                                  <span>Pinpointed Clause: <strong className="font-semibold text-text">{inc.pinpoint}</strong></span>
+                                </div>
+                              )}
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-text-muted pt-2 gap-1.5 border-t border-border/60">
+                                <span>Source: {inc.sourceName}</span>
+                                <a
+                                  href={inc.sourceUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-accent hover:underline inline-flex items-center gap-1 font-medium bg-surface px-2.5 py-1 rounded-lg border border-border/80 hover:border-accent shadow-xs"
+                                  title="Opens official government policy PDF directly at source"
+                                >
+                                  <FileText className="w-3.5 h-3.5 text-accent shrink-0" />
+                                  <span>Official Policy Doc / PDF</span>
+                                  <ExternalLink className="w-3 h-3 ml-0.5" />
+                                </a>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    )}
+                    </div>
                   </div>
                 ) : (
-                  <div className="pt-2 border-t border-border text-xs text-text-muted flex items-center gap-1.5 py-1">
+                  <div className="pt-2 border-t border-border text-xs text-text-muted flex items-center gap-1.5 py-1.5">
                     <FileText className="w-3.5 h-3.5 text-text-muted opacity-60" />
                     <span>0 state incentives qualify for current criteria</span>
                   </div>
@@ -555,10 +573,10 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                   </span>
                   <a
                     href={`/request-intro?city=${city.cityId}&headcount=${headcount}`}
-                    className="inline-flex items-center gap-1.5 text-xs text-teal-primary font-medium hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                    className="inline-flex items-center gap-1.5 text-xs text-teal-primary font-medium hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm group"
                   >
                     <span>Request intros for {city.cityName}</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </a>
                 </div>
               </div>
@@ -572,7 +590,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
             <div className="space-y-1">
               <h2 className="text-base font-medium text-text flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 text-amber-600" />
-                Not Ranked ({rankingResult.unranked.length})
+                <span>Not Ranked ({rankingResult.unranked.length})</span>
               </h2>
               <p className="text-xs text-text-muted leading-relaxed">
                 The following candidate cities are excluded from ranking because one or more selected factors are missing in our verified primary research. Per{" "}
@@ -580,18 +598,18 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {rankingResult.unranked.map((city) => (
                 <div
                   key={city.cityId}
-                  className="gradient-card border border-border border-dashed rounded-md p-4 space-y-3 shadow-xs"
+                  className="rounded-2xl border border-dashed border-border-strong bg-surface/80 p-5 space-y-3.5 shadow-subtle hover:border-border-stronger transition-all"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                       <h3 className="text-sm font-medium text-text">
                         {city.cityName}
                       </h3>
-                      <span className="text-xs text-text-muted">
+                      <span className="text-xs text-text-muted capitalize">
                         {city.stateName}
                       </span>
                     </div>
@@ -600,7 +618,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                       {city.missing.map((factor) => (
                         <span
                           key={factor}
-                          className="text-[10px] px-2 py-0.5 rounded-sm bg-amber-50 text-amber-900 border border-amber-200 font-medium"
+                          className="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200 font-medium"
                         >
                           Missing: {factor === "talent" ? "Tech Talent Count" : "Office Rent"}
                         </span>
@@ -609,7 +627,7 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                   </div>
 
                   {/* Show available metrics honestly */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-2 border-t border-border">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-3 border-t border-border/80">
                     {city.rentFact ? (
                       <SourcedValue fact={city.rentFact} label="Office Lease Rent" />
                     ) : (

@@ -2,7 +2,9 @@
 
 import React, { useState, useTransition } from "react";
 import Link from "next/link";
+import { CheckCircle2, ArrowLeft } from "lucide-react";
 import { submitIntroRequestAction, type SubmitIntroResult } from "@/app/actions/leads";
+import { InteractiveButton } from "@/components/InteractiveButton";
 import type { ProviderCategory } from "@/modules/providers";
 
 interface IntroFormProps {
@@ -40,16 +42,19 @@ export function IntroForm({
       {/* Notice per ADR 006 */}
       <div
         role="note"
-        className="p-3.5 rounded-lg border border-border bg-accent-subtle text-xs text-accent flex items-center justify-between"
+        className="p-4 rounded-2xl border border-accent/20 bg-accent-subtle text-xs text-accent flex items-center justify-between shadow-subtle"
       >
-        <span>Prototype: nothing is sent to anyone.</span>
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-accent" />
+          <span className="font-medium">Prototype: nothing is sent to anyone.</span>
+        </div>
         <span className="text-[11px] text-text-muted">Simulated matching engine</span>
       </div>
 
       {result?.success ? (
-        <div className="rounded-lg border border-border bg-surface p-6 space-y-4">
-          <div className="flex items-center gap-2 text-teal-primary font-medium text-base">
-            <span>&check;</span>
+        <div className="rounded-2xl border border-border bg-surface p-8 space-y-5 shadow-elevated">
+          <div className="flex items-center gap-2.5 text-teal-primary font-semibold text-base">
+            <CheckCircle2 className="w-5 h-5 text-accent" />
             <span>Request Received</span>
           </div>
 
@@ -64,7 +69,10 @@ export function IntroForm({
               simulate the provider experience, switch to one of the matched
               providers in the <strong>Demo mode</strong> header switcher and
               visit the{" "}
-              <Link href="/inbox" className="text-teal-primary underline font-medium focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm">
+              <Link
+                href="/inbox"
+                className="text-teal-primary underline font-medium focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+              >
                 Provider Inbox
               </Link>
               .
@@ -81,26 +89,27 @@ export function IntroForm({
             <button
               type="button"
               onClick={() => setResult(null)}
-              className="text-xs text-teal-primary hover:underline font-medium cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+              className="inline-flex items-center gap-1.5 text-xs text-teal-primary hover:text-teal-hover hover:underline font-medium cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
             >
-              &larr; Submit another intro request
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Submit another intro request</span>
             </button>
           </div>
         </div>
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="rounded-lg border border-border bg-surface p-6 sm:p-8 space-y-6"
+          className="rounded-2xl border border-border bg-surface p-6 sm:p-8 space-y-6 shadow-elevated"
         >
           {result && !result.success && (
-            <div className="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-700 font-medium">
+            <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 font-medium">
               {result.error}
             </div>
           )}
 
           {/* Section: Buyer Details */}
           <div className="space-y-4">
-            <h2 className="text-sm font-medium tracking-tight text-text border-b border-border pb-2">
+            <h2 className="text-sm font-semibold tracking-tight text-text border-b border-border/80 pb-2">
               Buyer Details
             </h2>
 
@@ -118,7 +127,7 @@ export function IntroForm({
                   type="text"
                   required
                   placeholder="e.g. John Doe"
-                  className="w-full bg-background border border-border rounded px-3 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary"
+                  className="w-full bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary transition-all"
                 />
               </div>
 
@@ -135,7 +144,7 @@ export function IntroForm({
                   type="text"
                   required
                   placeholder="e.g. Global Tech Corp"
-                  className="w-full bg-background border border-border rounded px-3 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary"
+                  className="w-full bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary transition-all"
                 />
               </div>
             </div>
@@ -153,7 +162,7 @@ export function IntroForm({
                 type="email"
                 required
                 placeholder="name@company.com"
-                className="w-full bg-background border border-border rounded px-3 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary"
+                className="w-full bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary transition-all"
               />
               <p className="text-[11px] text-text-muted">
                 Your email will remain hidden from providers until they spend 1 credit to accept your request.
@@ -161,9 +170,9 @@ export function IntroForm({
             </div>
           </div>
 
-          {/* Section: GCC Scope */}
+          {/* Section: GCC Parameters */}
           <div className="space-y-4">
-            <h2 className="text-sm font-medium tracking-tight text-text border-b border-border pb-2">
+            <h2 className="text-sm font-semibold tracking-tight text-text border-b border-border/80 pb-2">
               GCC Parameters
             </h2>
 
@@ -180,7 +189,7 @@ export function IntroForm({
                   name="citySlug"
                   required
                   defaultValue={cities[0]?.slug}
-                  className="w-full bg-background border border-border rounded px-2.5 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer"
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer transition-all"
                 >
                   {cities.map((city) => (
                     <option key={city.slug} value={city.slug}>
@@ -204,7 +213,7 @@ export function IntroForm({
                   min="1"
                   required
                   defaultValue="100"
-                  className="w-full bg-background border border-border rounded px-3 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary"
+                  className="w-full bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary transition-all"
                 />
               </div>
 
@@ -220,7 +229,7 @@ export function IntroForm({
                   name="function"
                   required
                   defaultValue="software_engineering"
-                  className="w-full bg-background border border-border rounded px-2.5 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer"
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer transition-all"
                 >
                   <option value="software_engineering">Software Engineering</option>
                   <option value="digital_ai">Digital & AI</option>
@@ -244,7 +253,7 @@ export function IntroForm({
                   name="category"
                   required
                   defaultValue={categories[0]?.id}
-                  className="w-full bg-background border border-border rounded px-2.5 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer"
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer transition-all"
                 >
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
@@ -266,7 +275,7 @@ export function IntroForm({
                   name="timeline"
                   required
                   defaultValue="3_months"
-                  className="w-full bg-background border border-border rounded px-2.5 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer"
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer transition-all"
                 >
                   <option value="immediate">Immediate (&lt; 1 month)</option>
                   <option value="3_months">1–3 months</option>
@@ -287,7 +296,7 @@ export function IntroForm({
                 id="chosenProviderSlug"
                 name="chosenProviderSlug"
                 defaultValue={preselectedProvider || ""}
-                className="w-full bg-background border border-border rounded px-2.5 py-1.5 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary cursor-pointer"
+                className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary cursor-pointer transition-all"
               >
                 <option value="">Auto-match up to 3 fair rotation providers</option>
                 {providers.map((p) => (
@@ -313,19 +322,21 @@ export function IntroForm({
                 name="note"
                 rows={3}
                 placeholder="Mention any specific facility requirements, specializations, or questions..."
-                className="w-full bg-background border border-border rounded p-3 text-xs text-text focus:outline-none focus:ring-1 focus:ring-teal-primary"
+                className="w-full bg-background border border-border rounded-xl p-3.5 text-xs text-text focus:outline-none focus:ring-2 focus:ring-teal-primary/40 focus:border-teal-primary transition-all"
               />
             </div>
           </div>
 
           <div className="pt-2">
-            <button
+            <InteractiveButton
               type="submit"
               disabled={isPending}
-              className="w-full sm:w-auto px-5 py-2 rounded bg-teal-primary text-white text-xs font-medium hover:bg-teal-hover transition-colors duration-150 disabled:opacity-50 cursor-pointer"
+              variant="primary"
+              size="md"
+              className="w-full sm:w-auto"
             >
               {isPending ? "Submitting request..." : "Submit Intro Request"}
-            </button>
+            </InteractiveButton>
           </div>
         </form>
       )}

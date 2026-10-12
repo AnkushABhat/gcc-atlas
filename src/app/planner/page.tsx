@@ -93,12 +93,21 @@ export default async function PlannerPage() {
   });
 
   return (
-    <div className="space-y-8">
-      <div>
+    <div className="relative space-y-8 py-2">
+      {/* Ambient background glow */}
+      <div
+        className="ambient-glow-teal -top-20 -left-16 w-96 h-96 opacity-60"
+        aria-hidden="true"
+      />
+
+      <div className="space-y-1.5">
+        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-accent-subtle text-accent border border-accent/20 text-xs font-medium">
+          <span>Multi-Factor Location Modeling</span>
+        </div>
         <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-text">
           GCC Setup Planner
         </h1>
-        <p className="mt-1.5 text-sm text-text-muted max-w-3xl leading-relaxed">
+        <p className="text-sm text-text-muted max-w-3xl leading-relaxed">
           Configure your headcount, functional scope, and strategic priorities. Candidate locations are ranked based strictly on verified public facts. Cities with missing figures are never imputed with guesses.
         </p>
       </div>

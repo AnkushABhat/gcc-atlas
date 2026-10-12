@@ -15,7 +15,10 @@
     "db:migrate": "tsx scripts/migrate.ts",
     "db:seed": "tsx scripts/seed.ts",
     "data:validate": "tsx scripts/validate-data.ts",
-    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm data:validate && pnpm test:e2e"
+    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm data:validate && pnpm test:e2e",
+    "build:worker": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare build && wrangler dev",
+    "deploy": "opennextjs-cloudflare build && wrangler deploy"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
@@ -37,6 +40,8 @@
     "eslint-config-next": "^15.1.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
+    "@opennextjs/cloudflare": "^1.0.0",
+    "wrangler": "^4.0.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vitest": "^3.0.0"

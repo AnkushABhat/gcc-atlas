@@ -5,3 +5,5 @@ local.db
 playwright-report
 test-results
 *.tsbuildinfo
+.open-next
+.wrangler

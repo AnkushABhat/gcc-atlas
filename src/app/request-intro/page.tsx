@@ -1,4 +1,5 @@
 import React from "react";
+import { ShieldCheck } from "lucide-react";
 import { listCities } from "@/modules/cities";
 import {
   listProviders,
@@ -55,12 +56,23 @@ export default async function RequestIntroPage({
   }));
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-xl font-medium tracking-tight text-text">
+    <div className="max-w-3xl mx-auto space-y-6 relative">
+      {/* Subtle Ambient Background Texture */}
+      <div
+        className="ambient-glow-teal -top-24 -right-16 w-80 h-80 opacity-40 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Header */}
+      <div className="space-y-2">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-subtle text-accent border border-accent/20 text-xs font-medium">
+          <ShieldCheck className="w-3.5 h-3.5 text-accent" />
+          <span>Qualified Lead Matching &middot; Max 3 Providers</span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-text">
           Request an Introduction
         </h1>
-        <p className="text-xs text-text-muted mt-1 leading-relaxed">
+        <p className="text-xs sm:text-sm text-text-muted mt-1 leading-relaxed">
           Submit your GCC setup requirements. Matches are routed to at most 3
           eligible providers based on category, city coverage, and fair rotation.
         </p>
