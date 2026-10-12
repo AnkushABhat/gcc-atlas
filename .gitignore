@@ -1,9 +1,10 @@
 node_modules
 .next
-local.db
+local.db*
 .env
 playwright-report
 test-results
 *.tsbuildinfo
 .open-next
 .wrangler
+.agents

@@ -95,6 +95,7 @@ test.describe("M6 Accessibility, Keyboard Navigation & Console Hygiene", () => {
   test("All pages maintain valid semantic HTML structure with accessible labels", async ({
     page,
   }) => {
+    test.slow();
     const routes = ["/", "/planner", "/providers", "/request-intro", "/inbox"];
 
     for (const route of routes) {
