@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 import { getSession } from "@/modules/auth";
 import { listProviders } from "@/modules/providers";
@@ -35,14 +36,22 @@ export default async function RootLayout({
         />
 
         {/* Global Header */}
-        <header className="border-b border-border bg-surface px-6 py-4">
+        <header className="border-b border-border bg-surface px-6 py-3.5 sticky top-0 z-20 backdrop-blur-xs">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
               <Link
                 href="/"
-                className="font-medium text-base tracking-tight text-text hover:text-teal-primary transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                className="font-medium text-base tracking-tight text-text hover:text-teal-primary transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm inline-flex items-center gap-2.5"
               >
-                GCC Atlas
+                <Image
+                  src="/logos/gcc-atlas-icon.svg"
+                  alt="GCC Atlas emblem"
+                  width={22}
+                  height={22}
+                  className="rounded-xs shrink-0"
+                  priority
+                />
+                <span>GCC Atlas</span>
               </Link>
               <nav className="flex items-center gap-4 text-sm font-normal">
                 <Link

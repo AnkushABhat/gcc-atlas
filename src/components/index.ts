@@ -15,3 +15,6 @@ export type { DataTableProps, Column } from "./DataTable";
 
 export { DemoBanner } from "./DemoBanner";
 export type { DemoBannerProps } from "./DemoBanner";
+
+export { ProviderLogo } from "./ProviderLogo";
+

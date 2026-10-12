@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { Coins } from "lucide-react";
 import { getSession } from "@/modules/auth";
 import { getProvider, listProviders } from "@/modules/providers";
 import {
@@ -84,14 +85,17 @@ export default async function InboxPage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 bg-surface p-3.5 rounded-lg border border-border">
+        <div className="flex items-center gap-3.5 bg-surface p-3.5 rounded-lg border border-border">
+          <div className="w-10 h-10 rounded-md bg-accent-subtle text-accent border border-border flex items-center justify-center shrink-0">
+            <Coins className="w-4 h-4" />
+          </div>
           <div>
             <div className="text-[11px] text-text-muted font-medium">
               Available credits
             </div>
             <div
               data-testid="credit-balance"
-              className="text-lg font-medium font-mono text-text"
+              className="text-lg font-medium font-mono text-text tabular-nums"
             >
               {currentBalance}{" "}
               <span className="text-xs font-normal text-text-muted">
@@ -145,31 +149,36 @@ export default async function InboxPage() {
 
                   <div>
                     {offer.status === "offered" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
-                        Offered (Active)
+                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-200 inline-flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                        <span>Offered (Active)</span>
                       </span>
                     )}
                     {offer.status === "accepted" && (
                       <span
                         data-testid="status-accepted"
-                        className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200"
+                        className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 inline-flex items-center gap-1.5"
                       >
-                        Accepted
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                        <span>Accepted</span>
                       </span>
                     )}
                     {offer.status === "declined" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600 border border-gray-200">
-                        Declined
+                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600 border border-gray-200 inline-flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                        <span>Declined</span>
                       </span>
                     )}
                     {offer.status === "expired" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-500 border border-gray-200">
-                        Expired
+                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-500 border border-gray-200 inline-flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                        <span>Expired</span>
                       </span>
                     )}
                     {offer.status === "refunded" && (
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200">
-                        Refunded (+1 credit)
+                      <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200 inline-flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
+                        <span>Refunded (+1 credit)</span>
                       </span>
                     )}
                   </div>

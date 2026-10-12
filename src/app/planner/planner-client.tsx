@@ -19,6 +19,11 @@ import {
   ExternalLink,
   ChevronDown,
   ChevronUp,
+  Users,
+  Globe,
+  Landmark,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 
 interface PlannerClientProps {
@@ -259,7 +264,10 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
           {/* Talent Weight */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-text">Talent Availability</span>
+              <span className="text-text flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span>Talent Availability</span>
+              </span>
               <span className="font-mono text-text-muted text-[11px]">{weights.talent}</span>
             </div>
             <input
@@ -277,7 +285,10 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
           {/* Cost Weight */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-text">Cost Efficiency (Lower Rent)</span>
+              <span className="text-text flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span>Cost Efficiency (Lower Rent)</span>
+              </span>
               <span className="font-mono text-text-muted text-[11px]">{weights.cost}</span>
             </div>
             <input
@@ -295,7 +306,10 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
           {/* Ecosystem Density Weight */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-text">Ecosystem Density</span>
+              <span className="text-text flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span>Ecosystem Density</span>
+              </span>
               <span className="font-mono text-text-muted text-[11px]">{weights.ecosystem}</span>
             </div>
             <input
@@ -313,7 +327,10 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
           {/* Policy Incentives Weight */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-text">State Policy Incentives</span>
+              <span className="text-text flex items-center gap-1.5">
+                <Landmark className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span>State Policy Incentives</span>
+              </span>
               <span className="font-mono text-text-muted text-[11px]">{weights.incentives}</span>
             </div>
             <input
@@ -379,9 +396,17 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                       #{idx + 1}
                     </span>
                     <div>
-                      <h3 className="text-base font-medium text-text">
-                        {city.cityName}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-medium text-text">
+                          {city.cityName}
+                        </h3>
+                        {idx === 0 && (
+                          <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-accent-subtle text-accent border border-border inline-flex items-center gap-1">
+                            <Sparkles className="w-3 h-3 text-accent" />
+                            <span>Top Match</span>
+                          </span>
+                        )}
+                      </div>
                       <span className="text-xs text-text-muted">
                         {city.stateName}
                       </span>
@@ -514,6 +539,20 @@ export function PlannerClient({ initialCities }: PlannerClientProps) {
                     <span>0 state incentives qualify for current criteria</span>
                   </div>
                 )}
+
+                {/* City Intro Action Footer */}
+                <div className="pt-3 border-t border-border flex items-center justify-between text-xs">
+                  <span className="text-[11px] text-text-muted">
+                    {city.factors.filter((f) => f.weight > 0).length} of 4 factors weighted
+                  </span>
+                  <a
+                    href={`/request-intro?city=${city.cityId}&headcount=${headcount}`}
+                    className="inline-flex items-center gap-1.5 text-xs text-teal-primary font-medium hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm"
+                  >
+                    <span>Request intros for {city.cityName}</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
             ))}
           </div>
