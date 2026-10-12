@@ -4,7 +4,7 @@ import Image from "next/image";
 import "./globals.css";
 import { getSession } from "@/modules/auth";
 import { listProviders } from "@/modules/providers";
-import { DemoBanner } from "@/components";
+import { DemoBanner, VisualGuide, GuideTrigger } from "@/components";
 
 export const metadata: Metadata = {
   title: "GCC Atlas — Single source of truth for Indian GCCs",
@@ -34,6 +34,9 @@ export default async function RootLayout({
           currentSession={session}
           availableProviders={availableProviders}
         />
+
+        {/* First-time viewer interactive visual guide with skip ability */}
+        <VisualGuide />
 
         {/* Global Header */}
         <header className="border-b border-border bg-surface px-6 py-3.5 sticky top-0 z-20 backdrop-blur-xs">
@@ -80,8 +83,11 @@ export default async function RootLayout({
                 </Link>
               </nav>
             </div>
-            <div className="text-xs text-text-muted">
-              Evidence-backed GCC advisory
+            <div className="flex items-center gap-3">
+              <GuideTrigger />
+              <div className="text-xs text-text-muted hidden sm:block">
+                Evidence-backed GCC advisory
+              </div>
             </div>
           </div>
         </header>

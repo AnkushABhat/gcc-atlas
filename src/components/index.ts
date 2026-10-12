@@ -18,3 +18,5 @@ export type { DemoBannerProps } from "./DemoBanner";
 
 export { ProviderLogo } from "./ProviderLogo";
 
+export { VisualGuide, openVisualGuide } from "./VisualGuide";
+export { GuideTrigger } from "./GuideTrigger";
