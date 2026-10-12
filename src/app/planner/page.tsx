@@ -10,10 +10,12 @@ export const metadata = {
 };
 
 export default async function PlannerPage() {
-  const cities = await listCities();
-  const allFacts = await getAllLatestFacts();
-  const gccCounts = await countOperatingByCity();
-  const allIncentives = await listIncentives();
+  const [cities, allFacts, gccCounts, allIncentives] = await Promise.all([
+    listCities(),
+    getAllLatestFacts(),
+    countOperatingByCity(),
+    listIncentives(),
+  ]);
 
   // Assemble PlannerCityData for each city
   const plannerCities: PlannerCityData[] = cities.map((city) => {
